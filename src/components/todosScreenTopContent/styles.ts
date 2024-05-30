@@ -1,10 +1,11 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from "react-native"
 
 export default StyleSheet.create({
   
     top_content: {
         flexDirection: 'row',
         width: 385,
+        marginTop:20,
         borderWidth: 1,
         borderColor: '#0000001F',
         alignItems: 'center',

@@ -1,14 +1,10 @@
 import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { DrawerContentScrollView, DrawerItem, createDrawerNavigator } from '@react-navigation/drawer';
-import { View, Text, StyleSheet, Image, SafeAreaView } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { View, Text } from 'react-native';
 import { DrawerMenuStackParamList } from '../types/DrawerMenuStackParamList';
 import CustomDrawerMenu from './CustomDrawerMenu';
 import TodosScreen from '../screens/TodosScreen';
-import MenuIcon from '../icons/MenuIcon';
-import SearchInput from '../components/searchInput';
-import UserIcon from '../icons/UserIcon';
+
 
 
 

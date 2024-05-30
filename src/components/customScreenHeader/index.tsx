@@ -10,11 +10,16 @@ import styles from './styles';
 type TodosScreenNavigationProp = DrawerNavigationProp<DrawerMenuStackParamList>
 
 type CustomScreenHeaderProps = {
-  navigation: TodosScreenNavigationProp;
+  navigation: TodosScreenNavigationProp
+  inputPlaceHolder : string,
+  inputValue : string,
+  setInputValue : (value : string) => void
 
 }
 
-const CustomScreenHeader : React.FC<CustomScreenHeaderProps> = ({navigation}) => {
+
+
+const CustomScreenHeader : React.FC<CustomScreenHeaderProps> = ({navigation, inputPlaceHolder, inputValue, setInputValue}) => {
     return (
         <View style={styles.container}>
             <View style={styles.content_wrapper}>
@@ -22,7 +27,7 @@ const CustomScreenHeader : React.FC<CustomScreenHeaderProps> = ({navigation}) =>
                     <MenuIcon />
                 </TouchableOpacity>
 
-                <SearchInput />
+                <SearchInput searchValue={inputValue} setSearchValue={setInputValue}  placeholder={inputPlaceHolder}/>
                 <UserIcon />
             
             </View>

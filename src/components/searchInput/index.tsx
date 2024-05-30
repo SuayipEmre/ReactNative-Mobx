@@ -4,12 +4,20 @@ import SearchIcon from '../../icons/SearchIcon'
 import { COLORS } from '../../styles/colors'
 import styles from './styles'
 
-const SearchInput = () => {
+
+type SearchInputProps = {
+    searchValue : string
+    setSearchValue : (value : string) => void,
+    placeholder : string
+}
+const SearchInput : React.FC<SearchInputProps> = ({searchValue, setSearchValue, placeholder}) => {
     return (
         <View style={styles.container}>
             <SearchIcon />
             <TextInput
-                placeholder='Post Ara'
+                value={searchValue}
+                onChangeText={setSearchValue}
+                placeholder={placeholder}
                 placeholderTextColor={COLORS.text.primary}
             />
 

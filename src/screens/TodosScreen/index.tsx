@@ -19,7 +19,7 @@ const TodosScreen: React.FC = () => {
     const navigation = useNavigation<DrawerNavigationProp<DrawerMenuStackParamList>>();
     const [todos, setTodos] = useState<[TodosTypes] | []>([])
     const [currentPage, setCurrentPage] = useState<number>(1)
-
+    const [searchTodos, setSearchTodos] = useState('')
     const listRef = useRef<FlatList>(null)
 
     const getTodos = async () => {
@@ -47,6 +47,7 @@ const TodosScreen: React.FC = () => {
         </View>
     )
 
+    const filteredTodos = todos.filter(item => item.title.toLowerCase().includes(searchTodos.toLowerCase()))
 
     return (
         <View style={styles.container}>
@@ -56,14 +57,19 @@ const TodosScreen: React.FC = () => {
                 {
                     todos.length > 0 && <FlatList
                         ref={listRef}
-                        data={currentTodos}
-                        ListHeaderComponent={<>
-                            <CustomScreenHeader navigation={navigation} />
+                        data={filteredTodos}
+                        ListHeaderComponent={< >
+                            <CustomScreenHeader
+                                navigation={navigation}
+                                inputPlaceHolder='Görev Ara'
+                                inputValue={searchTodos}
+                                setInputValue={setSearchTodos}
+                            />
                             <TodosScreenTopContent />
                         </>}
                         renderItem={renderTodos}
                         showsVerticalScrollIndicator={false}
-                        contentContainerStyle={{ gap: 12 }}
+                        contentContainerStyle={{ gap: 12, }}
                         ListFooterComponent={<Pagination currentPage={currentPage} listRef={listRef} onPageChange={setCurrentPage} totalPages={totalPages} />}
                     />
 
