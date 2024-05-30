@@ -1,7 +1,6 @@
-import { FlatList, ListRenderItem, StyleSheet, Text, View } from 'react-native'
+import { FlatList, ListRenderItem, SafeAreaView, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useRef, useState } from 'react'
 import { apiCall } from '../../services/ApiRequest'
-import TodosScreenTopContent from '../../components/todosScreenTopContent'
 import Pagination from '../../components/pagination'
 import { TodosTypes } from '../../types/TodosTypes'
 import CheckboxUncheckedIcon from '../../icons/CheckboxUncheckedIcon'
@@ -10,9 +9,10 @@ import { DrawerMenuStackParamList } from '../../types/DrawerMenuStackParamList'
 import CustomScreenHeader from '../../components/customScreenHeader'
 import { useNavigation } from '@react-navigation/native'
 import { DrawerNavigationProp } from '@react-navigation/drawer'
+import { ITEMS_PER_PAGE } from '../../constants/itemsPerPage'
 
 
-const ITEMS_PER_PAGE = 30;
+
 
 const TodosScreen: React.FC = () => {
 
@@ -47,10 +47,10 @@ const TodosScreen: React.FC = () => {
         </View>
     )
 
-    const filteredTodos = todos.filter(item => item.title.toLowerCase().includes(searchTodos.toLowerCase()))
+    const filteredTodos = currentTodos.filter(item => item.title.toLowerCase().includes(searchTodos.toLowerCase()))
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
 
             <View style={styles.content}>
 
@@ -65,7 +65,6 @@ const TodosScreen: React.FC = () => {
                                 inputValue={searchTodos}
                                 setInputValue={setSearchTodos}
                             />
-                            <TodosScreenTopContent />
                         </>}
                         renderItem={renderTodos}
                         showsVerticalScrollIndicator={false}
@@ -77,7 +76,7 @@ const TodosScreen: React.FC = () => {
 
             </View>
 
-        </View>
+        </SafeAreaView>
     )
 }
 
@@ -85,8 +84,8 @@ export default TodosScreen
 
 const styles = StyleSheet.create({
     container: {
+        flex:1,
         backgroundColor: '#ffffff',
-        paddingTop: 50,
     },
     content: {
         width: '90%',

@@ -4,6 +4,7 @@ import { View, Text } from 'react-native';
 import { DrawerMenuStackParamList } from '../types/DrawerMenuStackParamList';
 import CustomDrawerMenu from './CustomDrawerMenu';
 import TodosScreen from '../screens/TodosScreen';
+import PostsScreen from '../screens/PostsScreen';
 
 
 
@@ -18,13 +19,6 @@ function UserScreen() {
   );
 }
 
-function PostsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Gönderiler Sayfası</Text>
-    </View>
-  );
-}
 
 
 const Drawer = createDrawerNavigator<DrawerMenuStackParamList>()
@@ -40,7 +34,8 @@ const RootNavigator = () => {
         drawerStyle: {
           width: 372,
           zIndex: 12,
-          borderRadius: 50,
+          borderTopEndRadius : 50,
+          borderBottomEndRadius : 50,
         },
         headerShown: false
       }}
@@ -51,10 +46,7 @@ const RootNavigator = () => {
         return <CustomDrawerMenu focused={focused} props={props} />
       }}
     >
-      <Drawer.Screen
-        name="TodosScreen"
-        component={TodosScreen}
-      />
+      <Drawer.Screen name="TodosScreen" component={TodosScreen} />
       <Drawer.Screen name="UserScreen" component={UserScreen} />
       <Drawer.Screen name="PostsScreen" component={PostsScreen} />
     </Drawer.Navigator>
