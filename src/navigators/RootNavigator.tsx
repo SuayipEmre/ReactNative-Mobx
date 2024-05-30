@@ -1,28 +1,13 @@
 import * as React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { View, Text } from 'react-native';
 import { DrawerMenuStackParamList } from '../types/DrawerMenuStackParamList';
 import CustomDrawerMenu from './CustomDrawerMenu';
 import TodosScreen from '../screens/TodosScreen';
 import PostsScreen from '../screens/PostsScreen';
-
-
-
-
-
-
-function UserScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Kullanıcı Sayfası</Text>
-    </View>
-  );
-}
-
+import UsersScreen from '../screens/UsersScreen';
 
 
 const Drawer = createDrawerNavigator<DrawerMenuStackParamList>()
-
 
 const RootNavigator = () => {
 
@@ -47,7 +32,7 @@ const RootNavigator = () => {
       }}
     >
       <Drawer.Screen name="TodosScreen" component={TodosScreen} />
-      <Drawer.Screen name="UserScreen" component={UserScreen} />
+      <Drawer.Screen name="UsersScreen" component={UsersScreen} />
       <Drawer.Screen name="PostsScreen" component={PostsScreen} />
     </Drawer.Navigator>
   );

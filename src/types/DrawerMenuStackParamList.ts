@@ -1,5 +1,5 @@
 export type DrawerMenuStackParamList = {
   TodosScreen: undefined,
-  UserScreen: undefined,
+  UsersScreen: undefined,
   PostsScreen: undefined
 }

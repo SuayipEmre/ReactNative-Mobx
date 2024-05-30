@@ -54,7 +54,7 @@ const CustomDrawerMenu : React.FC<CustomDrawerMenuPropsTypes> = ({focused, props
                 inactiveTintColor='#4F359B'
                 focused={focused === 'User'}
                 icon={() => <CustomSvgComponent />}
-                label={'Kullanıcılar'} onPress={() => props.navigation.navigate('UserScreen')}
+                label={'Kullanıcılar'} onPress={() => props.navigation.navigate('UsersScreen')}
 
               />
 
