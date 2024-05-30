@@ -1,37 +1,37 @@
 import { FlatList, ListRenderItem, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useRef, useState } from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context'
 import { apiCall } from '../../services/ApiRequest'
-import CheckBox from '@react-native-community/checkbox'
 import TodosScreenTopContent from '../../components/todosScreenTopContent'
 import Pagination from '../../components/pagination'
 import { TodosTypes } from '../../types/TodosTypes'
 import CheckboxUncheckedIcon from '../../icons/CheckboxUncheckedIcon'
 import CheckboxCheckedIcon from '../../icons/CheckboxCheckedIcon'
-
+import { DrawerMenuStackParamList } from '../../types/DrawerMenuStackParamList'
+import CustomScreenHeader from '../../components/customScreenHeader'
+import { useNavigation } from '@react-navigation/native'
+import { DrawerNavigationProp } from '@react-navigation/drawer'
 
 
 const ITEMS_PER_PAGE = 30;
 
+const TodosScreen: React.FC = () => {
 
-const TodosScreen = () => {
+    const navigation = useNavigation<DrawerNavigationProp<DrawerMenuStackParamList>>();
     const [todos, setTodos] = useState<[TodosTypes] | []>([])
-    const [toggleCheckBox, setToggleCheckBox] = useState(false)
     const [currentPage, setCurrentPage] = useState<number>(1)
 
     const listRef = useRef<FlatList>(null)
-
 
     const getTodos = async () => {
         const todoData = await apiCall('todos')
         if (todoData) setTodos(todoData)
     }
+
     useEffect(() => {
         getTodos()
     }, [])
 
     const totalPages = Math.ceil(todos.length / ITEMS_PER_PAGE);
-
 
     const currentTodos = todos.slice(
         (currentPage - 1) * ITEMS_PER_PAGE,
@@ -49,18 +49,18 @@ const TodosScreen = () => {
 
 
     return (
-        <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
 
-            <View style={{
-                width: '90%',
-                alignSelf: 'center'
-            }}>
+            <View style={styles.content}>
 
                 {
                     todos.length > 0 && <FlatList
                         ref={listRef}
                         data={currentTodos}
-                        ListHeaderComponent={<TodosScreenTopContent />}
+                        ListHeaderComponent={<>
+                            <CustomScreenHeader navigation={navigation} />
+                            <TodosScreenTopContent />
+                        </>}
                         renderItem={renderTodos}
                         showsVerticalScrollIndicator={false}
                         contentContainerStyle={{ gap: 12 }}
@@ -71,7 +71,7 @@ const TodosScreen = () => {
 
             </View>
 
-        </SafeAreaView>
+        </View>
     )
 }
 
@@ -80,6 +80,12 @@ export default TodosScreen
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#ffffff',
+        paddingTop: 50,
     },
+    content: {
+        width: '90%',
+        alignSelf: 'center',
+        marginTop: 20,
+    }
 
 })
