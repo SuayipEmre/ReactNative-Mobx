@@ -5,15 +5,12 @@ import { View, Text, StyleSheet, Image } from 'react-native';
 import CustomSvgComponent from './src/icons/icon';
 import MenuIcon from './src/icons/MenuIcon';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import TodosScreen from './src/screens/TodosScreen';
+import SearchInput from './src/components/searchInput';
+import UserIcon from './src/icons/UserIcon';
 
 
-function HomeScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Ana Sayfa</Text>
-    </View>
-  );
-}
+
 
 function UserScreen() {
   return (
@@ -31,14 +28,20 @@ function PostsScreen() {
   );
 }
 
-const Drawer = createDrawerNavigator()
+export type DrawerMenuStackParamList = {
+  TodosScreen : undefined,
+  UserScreen: undefined,
+  PostsScreen : undefined
+}
+
+const Drawer = createDrawerNavigator<DrawerMenuStackParamList>()
 
 
 function MyDrawer() {
 
   return (
     <Drawer.Navigator
-      initialRouteName="Home"
+      initialRouteName="TodosScreen"
 
       screenOptions={({ navigation }) => ({
         drawerType: 'front',
@@ -51,11 +54,11 @@ function MyDrawer() {
           return <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
             <MenuIcon />
           </TouchableOpacity>
-        }
+        },
       })}
 
       drawerContent={(props) => {
-        const { routeNames, index } = props.state
+        const { routeNames, index,  } = props.state
         const focused = routeNames[index]
 
 
@@ -127,11 +130,13 @@ function MyDrawer() {
         )
       }}
     >
-      <Drawer.Screen name="Home" component={HomeScreen} />
-      <Drawer.Screen name="User" component={UserScreen} />
-      <Drawer.Screen name="Posts" component={PostsScreen} options={{
-        headerTitle: 'selam'
-      }} />
+      <Drawer.Screen name="TodosScreen" component={TodosScreen}  options={{
+        headerTitle : () => <SearchInput />,
+        headerRight : () => <UserIcon />,
+        
+      }}/>
+      <Drawer.Screen name="UserScreen" component={UserScreen} />
+      <Drawer.Screen name="PostsScreen" component={PostsScreen} />
     </Drawer.Navigator>
   );
 }
