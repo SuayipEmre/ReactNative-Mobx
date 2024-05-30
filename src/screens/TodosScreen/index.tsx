@@ -1,22 +1,26 @@
 import { FlatList, ListRenderItem, StyleSheet, Text, View } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import SortIcon from '../../icons/SortIcon'
-import FilterIcon from '../../icons/FilterIcon'
 import { apiCall } from '../../services/ApiRequest'
 import CheckBox from '@react-native-community/checkbox'
 import TodosScreenTopContent from '../../components/todosScreenTopContent'
+import Pagination from '../../components/pagination'
+import { TodosTypes } from '../../types/TodosTypes'
+import CheckboxUncheckedIcon from '../../icons/CheckboxUncheckedIcon'
+import CheckboxCheckedIcon from '../../icons/CheckboxCheckedIcon'
 
 
-type todosTypes = {
-    userId: number,
-    id: number,
-    title: string,
-    completed: boolean,
-}
+
+const ITEMS_PER_PAGE = 30;
+
+
 const TodosScreen = () => {
-    const [todos, setTodos] = useState<[todosTypes] | []>([])
+    const [todos, setTodos] = useState<[TodosTypes] | []>([])
     const [toggleCheckBox, setToggleCheckBox] = useState(false)
+    const [currentPage, setCurrentPage] = useState<number>(1)
+
+    const listRef = useRef<FlatList>(null)
+
 
     const getTodos = async () => {
         const todoData = await apiCall('todos')
@@ -26,15 +30,19 @@ const TodosScreen = () => {
         getTodos()
     }, [])
 
+    const totalPages = Math.ceil(todos.length / ITEMS_PER_PAGE);
 
 
-    const renderTodos: ListRenderItem<todosTypes> = ({ item, index }) => (
+    const currentTodos = todos.slice(
+        (currentPage - 1) * ITEMS_PER_PAGE,
+        currentPage * ITEMS_PER_PAGE
+    )
+
+    const renderTodos: ListRenderItem<TodosTypes> = ({ item, index }) => (
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, }}>
-            <CheckBox
-                disabled={false}
-                value={item.completed}
-                onValueChange={(newValue) => setToggleCheckBox(newValue)}
-            />
+            {
+                item.completed ? <CheckboxCheckedIcon /> : <CheckboxUncheckedIcon />
+            }
             <Text style={{ fontSize: 14, fontWeight: 400, }}>{item.title}</Text>
         </View>
     )
@@ -50,11 +58,13 @@ const TodosScreen = () => {
 
                 {
                     todos.length > 0 && <FlatList
-                        data={todos}
+                        ref={listRef}
+                        data={currentTodos}
                         ListHeaderComponent={<TodosScreenTopContent />}
                         renderItem={renderTodos}
                         showsVerticalScrollIndicator={false}
                         contentContainerStyle={{ gap: 12 }}
+                        ListFooterComponent={<Pagination currentPage={currentPage} listRef={listRef} onPageChange={setCurrentPage} totalPages={totalPages} />}
                     />
 
                 }
