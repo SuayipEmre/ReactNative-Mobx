@@ -9,6 +9,7 @@ import { apiCall } from '../../services/ApiRequest'
 import Pagination from '../../components/pagination'
 import UserCard from '../../components/userCard'
 import MainLayout from '../../layouts/MainLayout'
+import CustomFlatList from '../../components/customFlatList'
 
 const UsersScreen = () => {
     const listRef = useRef<FlatList>(null)
@@ -40,25 +41,23 @@ const UsersScreen = () => {
 
     return (
         <SafeAreaView style={styles.container}>
-              
+
             <MainLayout>
 
-            {
+                {
                     users.length > 0 &&
-                    <FlatList
-                        ref={listRef}
-                        ListHeaderComponent={  <CustomScreenHeader
+                    <CustomFlatList
+                        listRef={listRef}
+                        data={filteredUsers}
+                        renderItem={renderUsers}
+                        ListHeaderComponent={<CustomScreenHeader
                             inputPlaceHolder='Kullanıcı ara'
                             inputValue={searchUser}
                             setInputValue={setSearchUser}
                             navigation={navigation}
                         />}
-                        data={filteredUsers}
-                        renderItem={renderUsers}
-                        showsVerticalScrollIndicator={false}
                         ListFooterComponent={<Pagination currentPage={currentPage} listRef={listRef} onPageChange={setCurrentPage} totalPages={totalPages} />}
                     />
-
                 }
             </MainLayout>
         </SafeAreaView>
@@ -72,6 +71,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#ffffff',
     },
-   
+
 
 })

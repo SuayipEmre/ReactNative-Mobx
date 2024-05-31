@@ -11,6 +11,7 @@ import { useNavigation } from '@react-navigation/native'
 import { DrawerNavigationProp } from '@react-navigation/drawer'
 import { ITEMS_PER_PAGE } from '../../constants/itemsPerPage'
 import MainLayout from '../../layouts/MainLayout'
+import CustomFlatList from '../../components/customFlatList'
 
 
 
@@ -55,21 +56,20 @@ const TodosScreen: React.FC = () => {
             <MainLayout>
 
                 {
-                    todos.length > 0 && <FlatList
-                        ref={listRef}
+                    todos.length > 0 &&
+
+                    <CustomFlatList
+                        listRef={listRef}
                         data={filteredTodos}
-                        ListHeaderComponent={< >
-                            <CustomScreenHeader
-                                navigation={navigation}
-                                inputPlaceHolder='Görev Ara'
-                                inputValue={searchTodos}
-                                setInputValue={setSearchTodos}
-                            />
-                        </>}
+                        ListHeaderComponent={<CustomScreenHeader
+                            navigation={navigation}
+                            inputPlaceHolder='Görev Ara'
+                            inputValue={searchTodos}
+                            setInputValue={setSearchTodos}
+                        />}
                         renderItem={renderTodos}
-                        showsVerticalScrollIndicator={false}
-                        contentContainerStyle={{ gap: 12, }}
                         ListFooterComponent={<Pagination currentPage={currentPage} listRef={listRef} onPageChange={setCurrentPage} totalPages={totalPages} />}
+                        contentContainerStyle={{ gap: 12, }}
                     />
 
                 }
@@ -86,6 +86,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#ffffff',
     },
-   
+
 
 })
+

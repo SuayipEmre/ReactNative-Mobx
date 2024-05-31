@@ -9,6 +9,7 @@ import Pagination from '../../components/pagination'
 import { ITEMS_PER_PAGE } from '../../constants/itemsPerPage'
 import PostCard from '../../components/postCard'
 import MainLayout from '../../layouts/MainLayout'
+import CustomFlatList from '../../components/customFlatList'
 
 
 type PostsTypes = {
@@ -48,24 +49,23 @@ const PostsScreen = () => {
             <MainLayout>
                 {
                     posts.length > 0 && (
-                        <FlatList
-                            ref={listRef}
-                            ListHeaderComponent={
-                                <CustomScreenHeader
+                            <CustomFlatList
+                                listRef={listRef}
+                                renderItem={renderPosts}
+                                data={filteredPosts}
+                                ListHeaderComponent={<CustomScreenHeader
                                     inputPlaceHolder='Post Ara'
                                     inputValue={searchPostValue}
                                     setInputValue={setSearchPostValue}
                                     navigation={navigation}
                                 />}
-                            data={filteredPosts}
-                            renderItem={renderPosts}
-                            showsVerticalScrollIndicator={false}
-                            ListFooterComponent={<Pagination
-                                currentPage={currentPage}
-                                listRef={listRef}
-                                onPageChange={setCurrentPage}
-                                totalPages={totalPages} />}
-                        />
+                                ListFooterComponent={<Pagination
+                                    currentPage={currentPage}
+                                    listRef={listRef}
+                                    onPageChange={setCurrentPage}
+                                    totalPages={totalPages} />}
+
+                            />
                     )
                 }
             </MainLayout>
