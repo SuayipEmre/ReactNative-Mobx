@@ -1,20 +1,22 @@
 import { Text, View } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import DefaultUserIcon from '../../icons/DefaultUserIcon'
 import MoreVerticalIcon from '../../icons/MoreVerticalIcon'
 import { User } from '../../types/UsersTypes'
 import styles from './styles'
+import UserInformationModal from '../userInformationModal'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
 type UserCardProps = {
     user: User
 }
 const UserCard: React.FC<UserCardProps> = ({ user }) => {
+    const [modalVisible, setModalVisible] = useState(false)
     return (
         <View style={styles.container}>
 
             <View style={styles.left_side_content}>
                 <DefaultUserIcon />
-
                 <View>
 
                     <View>
@@ -26,7 +28,11 @@ const UserCard: React.FC<UserCardProps> = ({ user }) => {
 
                 </View>
             </View>
-            <MoreVerticalIcon />
+            <UserInformationModal modalVisible={modalVisible} user={user} />
+
+            <TouchableOpacity onPress={() => setModalVisible(true)}>
+                <MoreVerticalIcon />
+            </TouchableOpacity>
         </View>
     )
 }
