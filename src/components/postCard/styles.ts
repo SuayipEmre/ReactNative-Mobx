@@ -8,8 +8,8 @@ export default StyleSheet.create({
         borderColor: '#0000001F',
         marginTop: 24,
     },
-    title:{ fontSize: 16, fontWeight: 600, },
-    body:{ fontSize: 14, fontWeight: 400, lineHeight: 20, letterSpacing: 0.2 },
+    title:{ fontSize: 16, fontWeight: 600, color:'#26303E' },
+    body:{ fontSize: 14, fontWeight: 400, lineHeight: 20, letterSpacing: 0.2, color: '#000000B2' },
     bottom_content:{
         alignSelf: 'flex-end',
         flexDirection: 'row',

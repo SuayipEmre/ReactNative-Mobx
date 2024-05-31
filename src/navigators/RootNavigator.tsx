@@ -3,8 +3,8 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { DrawerMenuStackParamList } from '../types/DrawerMenuStackParamList';
 import CustomDrawerMenu from './CustomDrawerMenu';
 import TodosScreen from '../screens/TodosScreen';
-import PostsScreen from '../screens/PostsScreen';
 import UsersScreen from '../screens/UsersScreen';
+import { PostsNavigator } from './PostsNavigator';
 
 
 const Drawer = createDrawerNavigator<DrawerMenuStackParamList>()
@@ -33,7 +33,7 @@ const RootNavigator = () => {
     >
       <Drawer.Screen name="TodosScreen" component={TodosScreen} />
       <Drawer.Screen name="UsersScreen" component={UsersScreen} />
-      <Drawer.Screen name="PostsScreen" component={PostsScreen} />
+      <Drawer.Screen name="PostsNavigator" component={PostsNavigator} />
     </Drawer.Navigator>
   );
 }

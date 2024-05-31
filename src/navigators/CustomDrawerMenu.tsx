@@ -38,10 +38,10 @@ const CustomDrawerMenu: React.FC<CustomDrawerMenuPropsTypes> = ({ focused, props
 
         <CustomDrawerItem
           {...props}
-          isFocused={focused === 'PostsScreen'}
+          isFocused={focused === 'PostsNavigator'}
           label='Gönderiler'
           icon={<PostsIcon />}
-          onPress={() => props.navigation.navigate('PostsScreen')}
+          onPress={() => props.navigation.navigate('PostsNavigator')}
         />
 
 
