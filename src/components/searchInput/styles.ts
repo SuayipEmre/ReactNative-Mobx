@@ -12,7 +12,5 @@ export default StyleSheet.create({
         paddingLeft:6,
         backgroundColor: COLORS.background.primary,
     },
-    input: {
-
-    },
+    
 })

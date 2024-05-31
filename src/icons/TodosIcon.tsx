@@ -1,7 +1,7 @@
 import React from 'react';
 import Svg, { G, Path, Defs, ClipPath, Rect } from 'react-native-svg';
 
-const CustomSvgComponent = () => (
+const TodosIcon = () => (
   <Svg width="25" height="24" viewBox="0 0 25 24" fill="none">
     <G clipPath="url(#clip0_3_991)">
       <Path
@@ -48,4 +48,4 @@ const CustomSvgComponent = () => (
   </Svg>
 );
 
-export default CustomSvgComponent;
+export default TodosIcon

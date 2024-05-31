@@ -10,6 +10,7 @@ import CustomScreenHeader from '../../components/customScreenHeader'
 import { useNavigation } from '@react-navigation/native'
 import { DrawerNavigationProp } from '@react-navigation/drawer'
 import { ITEMS_PER_PAGE } from '../../constants/itemsPerPage'
+import MainLayout from '../../layouts/MainLayout'
 
 
 
@@ -51,8 +52,7 @@ const TodosScreen: React.FC = () => {
 
     return (
         <SafeAreaView style={styles.container}>
-
-            <View style={styles.content}>
+            <MainLayout>
 
                 {
                     todos.length > 0 && <FlatList
@@ -74,8 +74,7 @@ const TodosScreen: React.FC = () => {
 
                 }
 
-            </View>
-
+            </MainLayout>
         </SafeAreaView>
     )
 }
@@ -84,13 +83,9 @@ export default TodosScreen
 
 const styles = StyleSheet.create({
     container: {
-        flex:1,
+        flex: 1,
         backgroundColor: '#ffffff',
     },
-    content: {
-        width: '90%',
-        alignSelf: 'center',
-        marginTop: 20,
-    }
+   
 
 })

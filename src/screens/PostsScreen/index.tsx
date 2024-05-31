@@ -1,4 +1,4 @@
-import { FlatList, ListRenderItem, SafeAreaView, StyleSheet, View } from 'react-native'
+import { FlatList, ListRenderItem, SafeAreaView, StyleSheet } from 'react-native'
 import React, { useEffect, useRef, useState } from 'react'
 import { apiCall } from '../../services/ApiRequest'
 import CustomScreenHeader from '../../components/customScreenHeader'
@@ -8,6 +8,7 @@ import { DrawerMenuStackParamList } from '../../types/DrawerMenuStackParamList'
 import Pagination from '../../components/pagination'
 import { ITEMS_PER_PAGE } from '../../constants/itemsPerPage'
 import PostCard from '../../components/postCard'
+import MainLayout from '../../layouts/MainLayout'
 
 
 type PostsTypes = {
@@ -22,6 +23,7 @@ const PostsScreen = () => {
     const [searchPostValue, setSearchPostValue] = useState('')
     const listRef = useRef<FlatList>(null)
     const [currentPage, setCurrentPage] = useState<number>(1)
+
     const getPosts = async () => {
         const posts = await apiCall('posts')
         if (posts) setPosts(posts)
@@ -43,7 +45,7 @@ const PostsScreen = () => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <View style={styles.content}>
+            <MainLayout>
                 {
                     posts.length > 0 && (
                         <FlatList
@@ -66,7 +68,7 @@ const PostsScreen = () => {
                         />
                     )
                 }
-            </View>
+            </MainLayout>
         </SafeAreaView>
     )
 }
@@ -78,10 +80,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#ffffff',
     },
-    content: {
-        width: '90%',
-        alignSelf: 'center',
-        marginTop: 20,
-    }
+
 
 })

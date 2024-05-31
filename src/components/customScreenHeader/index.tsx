@@ -6,7 +6,7 @@ import MenuIcon from '../../icons/MenuIcon';
 import SearchInput from '../searchInput';
 import UserIcon from '../../icons/UserIcon';
 import styles from './styles';
-import TodosScreenTopContent from '../todosScreenTopContent';
+import CustomHeaderBottomContent from '../todosScreenTopContent';
 
 type TodosScreenNavigationProp = DrawerNavigationProp<DrawerMenuStackParamList>
 
@@ -33,7 +33,7 @@ const CustomScreenHeader: React.FC<CustomScreenHeaderProps> = ({ navigation, inp
 
             </View>
 
-            <TodosScreenTopContent />
+            <CustomHeaderBottomContent />
         </>
     )
 }

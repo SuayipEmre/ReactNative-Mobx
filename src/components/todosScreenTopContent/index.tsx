@@ -4,7 +4,7 @@ import SortIcon from '../../icons/SortIcon'
 import FilterIcon from '../../icons/FilterIcon'
 import styles from './styles'
 
-const TodosScreenTopContent = () => {
+const CustomHeaderBottomContent = () => {
   return (
     <View style={styles.top_content}>
 
@@ -21,5 +21,5 @@ const TodosScreenTopContent = () => {
   )
 }
 
-export default TodosScreenTopContent
+export default CustomHeaderBottomContent
 

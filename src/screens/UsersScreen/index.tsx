@@ -10,6 +10,8 @@ import { apiCall } from '../../services/ApiRequest'
 import Pagination from '../../components/pagination'
 import DefaultUserIcon from '../../icons/DefaultUserIcon'
 import MoreVerticalIcon from '../../icons/MoreVerticalIcon'
+import UserCard from '../../components/userCard'
+import MainLayout from '../../layouts/MainLayout'
 
 const UsersScreen = () => {
     const listRef = useRef<FlatList>(null)
@@ -18,41 +20,7 @@ const UsersScreen = () => {
     const [searchUser, setSearchUser] = useState('')
     const [users, setUsers] = useState<[User] | []>([])
 
-    const renderUsers: ListRenderItem<User> = ({ item, index }) => (
-        <View style={{
-            flexDirection: 'row',
-            justifyContent:'space-between',
-            borderRadius: 8,
-            padding: 12,
-            borderWidth: 1,
-            borderColor: '#0000001F',
-            width: 386,
-            height: 90,
-            marginTop: 12,
-        }}>
-
-            <View style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                gap: 10,
-
-            }}>
-                <DefaultUserIcon />
-
-                <View>
-
-                    <View>
-                        <Text style={{ fontSize: 16, fontWeight: 400, lineHeight: 20 }}>{item.name}</Text>
-                        <Text style={{ fontSize: 10, fontWeight: 400, lineHeight: 16 }}>{item.email}</Text>
-                    </View>
-
-                    <Text style={{ fontWeight: 300, fontSize: 12, lineHeight: 16, marginTop:10 }}>{item.phone}</Text>
-
-                </View>
-            </View>
-            <MoreVerticalIcon />
-        </View>
-    )
+    const renderUsers: ListRenderItem<User> = ({ item, index }) => <UserCard user={item} />
 
     const totalPages = Math.ceil(users.length / 10)
 
@@ -75,9 +43,10 @@ const UsersScreen = () => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <View style={styles.content}>
               
-                {
+            <MainLayout>
+
+            {
                     users.length > 0 &&
                     <FlatList
                         ref={listRef}
@@ -94,7 +63,7 @@ const UsersScreen = () => {
                     />
 
                 }
-            </View>
+            </MainLayout>
         </SafeAreaView>
     )
 }
@@ -106,10 +75,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#ffffff',
     },
-    content: {
-        width: '90%',
-        alignSelf: 'center',
-        marginTop: 20,
-    }
+   
 
 })
