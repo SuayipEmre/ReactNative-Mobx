@@ -6,14 +6,16 @@ import { User } from '../../types/UsersTypes'
 import styles from './styles'
 import UserInformationModal from '../userInformationModal'
 import { TouchableOpacity } from 'react-native-gesture-handler'
+import favoriteUsersStore from '../../store/FavoriteUsers'
 
 type UserCardProps = {
     user: User
 }
 const UserCard: React.FC<UserCardProps> = ({ user }) => {
     const [modalVisible, setModalVisible] = useState(false)
+    
     return (
-        <View style={styles.container}>
+        <TouchableOpacity style={styles.container} onPress={() => favoriteUsersStore.addFavoriteUser(user)}>
 
             <View style={styles.left_side_content}>
                 <DefaultUserIcon />
@@ -33,7 +35,7 @@ const UserCard: React.FC<UserCardProps> = ({ user }) => {
             <TouchableOpacity onPress={() => setModalVisible(true)}>
                 <MoreVerticalIcon />
             </TouchableOpacity>
-        </View>
+        </TouchableOpacity>
     )
 }
 
