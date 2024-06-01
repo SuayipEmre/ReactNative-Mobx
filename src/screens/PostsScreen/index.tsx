@@ -1,85 +1,77 @@
-import { FlatList, ListRenderItem, SafeAreaView, StyleSheet } from 'react-native'
-import React, { useEffect, useRef, useState } from 'react'
-import { apiCall } from '../../services/ApiRequest'
-import CustomScreenHeader from '../../components/customScreenHeader'
-import { useNavigation } from '@react-navigation/native'
-import { DrawerNavigationProp } from '@react-navigation/drawer'
-import { DrawerMenuStackParamList } from '../../types/DrawerMenuStackParamList'
-import Pagination from '../../components/pagination'
-import { ITEMS_PER_PAGE } from '../../constants/itemsPerPage'
-import PostCard from '../../components/postCard'
-import MainLayout from '../../layouts/MainLayout'
-import CustomFlatList from '../../components/customFlatList'
+import { ActivityIndicator, FlatList, ListRenderItem, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import CustomScreenHeader from '../../components/customScreenHeader';
+import { useNavigation } from '@react-navigation/native';
+import { DrawerNavigationProp } from '@react-navigation/drawer';
+import { DrawerMenuStackParamList } from '../../types/DrawerMenuStackParamList';
+import Pagination from '../../components/pagination';
+import PostCard from '../../components/postCard';
+import MainLayout from '../../layouts/MainLayout';
+import CustomFlatList from '../../components/customFlatList';
+import { observer } from 'mobx-react';
+import postsStore from '../../store/Posts';
 
-
-type PostsTypes = {
-    userId: string,
-    id: number,
-    title: string,
-    body: string
-}
-const PostsScreen = () => {
-    const navigation = useNavigation<DrawerNavigationProp<DrawerMenuStackParamList>>()
-    const [posts, setPosts] = useState<[PostsTypes] | []>([])
-    const [searchPostValue, setSearchPostValue] = useState('')
-    const listRef = useRef<FlatList>(null)
-    const [currentPage, setCurrentPage] = useState<number>(1)
-
-    const getPosts = async () => {
-        const posts = await apiCall('posts')
-        if (posts) setPosts(posts)
-    }
-
-    const renderPosts: ListRenderItem<PostsTypes> = ({ item, index }) => <PostCard post={item} index={index} />
-
-    const totalPages = Math.ceil(posts.length / ITEMS_PER_PAGE)
-
-    const currentPosts = posts.slice(
-        (currentPage - 1) * ITEMS_PER_PAGE,
-        currentPage * ITEMS_PER_PAGE
-    )
-    const filteredPosts = currentPosts.filter(item => item.title.toLowerCase().includes(searchPostValue.toLowerCase()))
+const PostsScreen: React.FC = observer(() => {
+    const navigation = useNavigation<DrawerNavigationProp<DrawerMenuStackParamList>>();
+    const listRef = useRef<FlatList>(null);
 
     useEffect(() => {
-        getPosts()
-    }, [])
+        postsStore.fetchPosts();
+    }, []);
+
+    const renderPosts: ListRenderItem<typeof postsStore.posts[0]> = ({ item, index }) => <PostCard post={item} index={index} />
+
+    const renderContent = () => {
+        if (postsStore.loading) {
+            return (
+                <View style={{ width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' }}>
+                    <ActivityIndicator />
+                </View>
+            );
+        } else if (postsStore.error) {
+            return <Text>{postsStore.error}</Text>;
+        }
+
+        return (
+            <CustomFlatList
+                listRef={listRef}
+                data={postsStore.filteredPosts}
+                ListHeaderComponent={
+                    <CustomScreenHeader
+                        inputPlaceHolder='Post Ara'
+                        inputValue={postsStore.searchPostValue}
+                        setInputValue={postsStore.setSearchPostValue}
+                        navigation={navigation}
+                    />
+                }
+                renderItem={renderPosts}
+                ListFooterComponent={
+                    <Pagination
+                        currentPage={postsStore.currentPage}
+                        listRef={listRef}
+                        onPageChange={postsStore.setCurrentPage}
+                        totalPages={postsStore.totalPages}
+                    />
+                }
+                contentContainerStyle={{ gap: 12 }}
+            />
+        );
+    }
 
     return (
         <SafeAreaView style={styles.container}>
             <MainLayout>
-                {
-                    posts.length > 0 && (
-                            <CustomFlatList
-                                listRef={listRef}
-                                renderItem={renderPosts}
-                                data={filteredPosts}
-                                ListHeaderComponent={<CustomScreenHeader
-                                    inputPlaceHolder='Post Ara'
-                                    inputValue={searchPostValue}
-                                    setInputValue={setSearchPostValue}
-                                    navigation={navigation}
-                                />}
-                                ListFooterComponent={<Pagination
-                                    currentPage={currentPage}
-                                    listRef={listRef}
-                                    onPageChange={setCurrentPage}
-                                    totalPages={totalPages} />}
-
-                            />
-                    )
-                }
+                {renderContent()}
             </MainLayout>
         </SafeAreaView>
-    )
-}
+    );
+})
 
-export default PostsScreen
+export default PostsScreen;
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#ffffff',
     },
-
-
-})
+});

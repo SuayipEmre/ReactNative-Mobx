@@ -1,87 +1,72 @@
-import { FlatList, ListRenderItem, SafeAreaView, StyleSheet, Text, View } from 'react-native'
-import React, { useEffect, useRef, useState } from 'react'
-import { apiCall } from '../../services/ApiRequest'
+import { ActivityIndicator, FlatList, ListRenderItem, SafeAreaView, StyleSheet, Text, View } from 'react-native'
+import React, { useEffect, useRef } from 'react'
 import Pagination from '../../components/pagination'
 import { TodosTypes } from '../../types/TodosTypes'
-import CheckboxUncheckedIcon from '../../icons/CheckboxUncheckedIcon'
-import CheckboxCheckedIcon from '../../icons/CheckboxCheckedIcon'
 import { DrawerMenuStackParamList } from '../../types/DrawerMenuStackParamList'
 import CustomScreenHeader from '../../components/customScreenHeader'
 import { useNavigation } from '@react-navigation/native'
 import { DrawerNavigationProp } from '@react-navigation/drawer'
-import { ITEMS_PER_PAGE } from '../../constants/itemsPerPage'
 import MainLayout from '../../layouts/MainLayout'
 import CustomFlatList from '../../components/customFlatList'
-import { TEXT_SIZE } from '../../styles/ConstantValues'
-import Animated, { FadeInUp } from 'react-native-reanimated'
+import TodoCard from '../../components/todoCard'
+import todosStore from '../../store/Todos'
+import { observer } from 'mobx-react'
 
-
-
-
-const TodosScreen: React.FC = () => {
-
+const TodosScreen: React.FC = observer(() => {
     const navigation = useNavigation<DrawerNavigationProp<DrawerMenuStackParamList>>();
-    const [todos, setTodos] = useState<[TodosTypes] | []>([])
-    const [currentPage, setCurrentPage] = useState<number>(1)
-    const [searchTodos, setSearchTodos] = useState('')
-    const listRef = useRef<FlatList>(null)
-
-    const getTodos = async () => {
-        const todoData = await apiCall('todos')
-        if (todoData) setTodos(todoData)
-    }
+    const listRef = useRef<FlatList>(null);
 
     useEffect(() => {
-        getTodos()
-    }, [])
+        todosStore.fetchTodos();
+    }, []);
 
-    const totalPages = Math.ceil(todos.length / ITEMS_PER_PAGE);
+    const renderTodos: ListRenderItem<TodosTypes> = ({ item, index }) => <TodoCard index={index} todo={item} />
 
-    const currentTodos = todos.slice(
-        (currentPage - 1) * ITEMS_PER_PAGE,
-        currentPage * ITEMS_PER_PAGE
-    )
+    const renderContent = () => {
+        if (todosStore.loading) {
+            return (
+                <View style={{ width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' }}>
+                    <ActivityIndicator />
+                </View>
+            );
+        } else if (todosStore.error) {
+            return <Text>{todosStore.error}</Text>;
+        }
 
-    const renderTodos: ListRenderItem<TodosTypes> = ({ item, index }) => (
-        <Animated.View
-        style={{ flexDirection: 'row', alignItems: 'center', gap: 8, }}
-        entering={FadeInUp.delay(100 * index).duration(100).springify().damping(12)}> 
-            {
-                item.completed ? <CheckboxCheckedIcon /> : <CheckboxUncheckedIcon />
-            }
-            <Text style={{ fontSize: TEXT_SIZE.normal, fontWeight: 400, }}>{item.title}</Text>
-        </Animated.View>
-    )
-
-    const filteredTodos = currentTodos.filter(item => item.title.toLowerCase().includes(searchTodos.toLowerCase()))
+        return (
+            <CustomFlatList
+                listRef={listRef}
+                data={todosStore.filteredTodos}
+                ListHeaderComponent={
+                    <CustomScreenHeader
+                        navigation={navigation}
+                        inputPlaceHolder='Görev Ara'
+                        inputValue={todosStore.searchTodos}
+                        setInputValue={todosStore.setSearchTodos}
+                    />
+                }
+                renderItem={renderTodos}
+                ListFooterComponent={
+                    <Pagination
+                        currentPage={todosStore.currentPage}
+                        listRef={listRef}
+                        onPageChange={todosStore.setCurrentPage}
+                        totalPages={todosStore.totalPages}
+                    />
+                }
+                contentContainerStyle={{ gap: 12 }}
+            />
+        );
+    }
 
     return (
         <SafeAreaView style={styles.container}>
             <MainLayout>
-
-                {
-                    todos.length > 0 &&
-
-                    <CustomFlatList
-                        listRef={listRef}
-                        data={filteredTodos}
-                        ListHeaderComponent={<CustomScreenHeader
-                            navigation={navigation}
-                            inputPlaceHolder='Görev Ara'
-                            inputValue={searchTodos}
-                            setInputValue={setSearchTodos}
-                        />}
-                        renderItem={renderTodos}
-                        ListFooterComponent={<Pagination currentPage={currentPage} listRef={listRef} onPageChange={setCurrentPage} totalPages={totalPages} />}
-                        contentContainerStyle={{ gap: 12, }}
-                    />
-
-                }
-
+                {renderContent()}
             </MainLayout>
         </SafeAreaView>
-    )
-}
+    );
+})
 
 export default TodosScreen
 
@@ -90,7 +75,4 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#ffffff',
     },
-
-
-})
-
+});
