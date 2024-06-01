@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from "react-native"
 import { TouchableOpacity } from "react-native-gesture-handler"
 import ChevronRightIcon from "../icons/ChevronRightIcon"
+import { PADDING } from "../styles/ConstantValues"
 
 
 type CustomDrawerItemProps = {
@@ -37,7 +38,7 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: 'red',
         justifyContent: 'space-between',
-        padding: 18,
+        padding: PADDING.large,
         borderBottomWidth : 1,
         borderBottomColor : '#0000001F'
     },

@@ -1,16 +1,19 @@
 import { StyleSheet } from "react-native";
+import { MARGIN, PADDING, RADIUS, TEXT_SIZE } from "../../styles/ConstantValues";
 
 export default StyleSheet.create({
-    container:{
-        width: 385, borderRadius: 8,
-        padding: 12, gap: 16,
+    container: {
+        width: 385,
+        borderRadius: RADIUS.medium,
+        padding: PADDING.small,
+        gap: 16,
         borderWidth: 1,
         borderColor: '#0000001F',
-        marginTop: 24,
+        marginTop: MARGIN.xLarge,
     },
-    title:{ fontSize: 16, fontWeight: 600, color:'#26303E' },
-    body:{ fontSize: 14, fontWeight: 400, lineHeight: 20, letterSpacing: 0.2, color: '#000000B2' },
-    bottom_content:{
+    title: { fontSize: TEXT_SIZE.medium, fontWeight: 600, color: '#26303E' },
+    body: { fontSize: TEXT_SIZE.normal, fontWeight: 400, lineHeight: 20, letterSpacing: 0.2, color: '#000000B2' },
+    bottom_content: {
         alignSelf: 'flex-end',
         flexDirection: 'row',
         alignItems: 'center',
@@ -18,5 +21,5 @@ export default StyleSheet.create({
         width: 131,
         height: 32,
     },
-    seemore : { fontWeight: 500, lineHeight: 20, fontSize: 14, },
+    seemore: { fontWeight: 500, lineHeight: 20, fontSize: TEXT_SIZE.normal, },
 })

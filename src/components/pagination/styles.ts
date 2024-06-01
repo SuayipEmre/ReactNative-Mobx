@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { MARGIN, PADDING, TEXT_SIZE } from "../../styles/ConstantValues";
 
 
 export default StyleSheet.create({
@@ -6,15 +7,15 @@ export default StyleSheet.create({
         flexDirection:'row',
         alignItems:'center',
         justifyContent: 'space-between',
-        marginVertical: 10,
-        paddingHorizontal: 20,
+        marginVertical: MARGIN.medium,
+        paddingHorizontal: PADDING.xLarge,
         width:'100%',
     },
     button: {
-        fontSize: 16,
+        fontSize: TEXT_SIZE.medium,
     },
    
     pageInfo: {
-        fontSize: 16,
+        fontSize: TEXT_SIZE.medium,
     },
 });

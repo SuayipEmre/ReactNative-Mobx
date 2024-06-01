@@ -5,6 +5,7 @@ import favoriteUsersStore from '../../store/FavoriteUsers'
 import { observer } from 'mobx-react'
 import UserCard from '../../components/userCard'
 import MainLayout from '../../layouts/MainLayout'
+import { TEXT_SIZE } from '../../styles/ConstantValues'
 
 const FavoritesScreen = observer(() => {
     return (
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#ffffff',
     },
     title : {
-        fontSize:18,
+        fontSize:TEXT_SIZE.large,
         fontWeight :'bold',
     },
 })

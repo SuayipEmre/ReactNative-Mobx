@@ -12,6 +12,7 @@ import { DrawerNavigationProp } from '@react-navigation/drawer'
 import { ITEMS_PER_PAGE } from '../../constants/itemsPerPage'
 import MainLayout from '../../layouts/MainLayout'
 import CustomFlatList from '../../components/customFlatList'
+import { TEXT_SIZE } from '../../styles/ConstantValues'
 
 
 
@@ -45,7 +46,7 @@ const TodosScreen: React.FC = () => {
             {
                 item.completed ? <CheckboxCheckedIcon /> : <CheckboxUncheckedIcon />
             }
-            <Text style={{ fontSize: 14, fontWeight: 400, }}>{item.title}</Text>
+            <Text style={{ fontSize: TEXT_SIZE.normal, fontWeight: 400, }}>{item.title}</Text>
         </View>
     )
 

@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { MARGIN } from "../../styles/ConstantValues";
 
 export default StyleSheet.create({
     container : {
@@ -7,7 +8,7 @@ export default StyleSheet.create({
         borderBottomColor: '#0000001F',
         height: 77,
         width:'100%',
-        marginTop:10,
+        marginTop:MARGIN.small,
     },
 
     content_wrapper:{

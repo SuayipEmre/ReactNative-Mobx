@@ -6,6 +6,7 @@ import { apiCall } from '../../services/ApiRequest'
 import { Comment } from '../../types/CommentsTypes'
 import MainLayout from '../../layouts/MainLayout'
 import CommentCard from '../../components/commentCard'
+import { MARGIN, TEXT_SIZE } from '../../styles/ConstantValues'
 
 type PostDetailScreenProps = NativeStackScreenProps<PostsNavigatorStackParamList, 'PostDetailScreen'>
 const PostDetailScreen: React.FC<PostDetailScreenProps> = ({ route }) => {
@@ -28,7 +29,7 @@ const PostDetailScreen: React.FC<PostDetailScreenProps> = ({ route }) => {
                     <Text style={styles.body}>{post.body}</Text>
 
 
-                    <View style={{marginTop:20, gap:10}}>
+                    <View style={{marginTop:MARGIN.xLarge, gap:10}}>
                     <Text style={styles.comment_title}>Comments</Text>
                         <View style={{ gap: 20 }}>
                             {
@@ -50,25 +51,25 @@ const styles = StyleSheet.create({
         backgroundColor: '#ffffff',
     },
     content: {
-        marginTop: 15,
+        marginTop: MARGIN.large,
     },
     title: {
         fontWeight: '600',
-        fontSize: 16,
+        fontSize: TEXT_SIZE.medium,
         lineHeight: 16,
         letterSpacing: 0.4,
         color: '#26303E',
     },
     body: {
         fontWeight: '400',
-        fontSize: 14,
+        fontSize: TEXT_SIZE.normal,
         lineHeight: 20,
         letterSpacing: 0.2,
         color: '#000000',
-        marginTop: 12,
+        marginTop: MARGIN.medium,
     },
     comment_title: {
-        fontSize: 20,
+        fontSize: TEXT_SIZE.xLarge,
         fontWeight: '600',
         lineHeight: 32,
     },

@@ -1,4 +1,5 @@
 import { Dimensions, StyleSheet } from "react-native";
+import { MARGIN, PADDING, RADIUS, TEXT_SIZE } from "../../styles/ConstantValues";
 
 const { width, height } = Dimensions.get('screen')
 export default StyleSheet.create({
@@ -15,22 +16,21 @@ export default StyleSheet.create({
             height: 2,
         },
         shadowOpacity: 0.25,
-        shadowRadius: 4,
+        shadowRadius: RADIUS.small,
         elevation: 5,
-
-        paddingVertical: 20,
-        paddingHorizontal: 16,
+        paddingVertical: PADDING.large,
+        paddingHorizontal: PADDING.medium,
     },
     content: {
         width: '90%',
         flex: 1,
         alignSelf: 'center',
-        marginTop: 12,
+        marginTop: MARGIN.medium,
 
     },
     user_name: {
         fontWeight: 600,
-        fontSize: 24,
+        fontSize: TEXT_SIZE.xLarge,
         letterSpacing: 0.4,
         color: '#26303E',
     },

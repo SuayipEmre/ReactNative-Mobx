@@ -19,7 +19,6 @@ const RootNavigator = () => {
         drawerType: 'front',
         drawerStyle: {
           width: 372,
-          zIndex: 12,
           borderTopEndRadius : 50,
           borderBottomEndRadius : 50,
         },

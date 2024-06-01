@@ -6,6 +6,7 @@ import PostsIcon from '../icons/PostsIcon'
 import TodosIcon from '../icons/TodosIcon'
 import CustomDrawerItem from './CustomDrawerItem'
 import HeartIcon from '../icons/HeartIcon'
+import { MARGIN, PADDING, RADIUS, TEXT_SIZE } from '../styles/ConstantValues'
 
 
 type CustomDrawerMenuPropsTypes = {
@@ -80,7 +81,7 @@ export default CustomDrawerMenu
 
 
 export const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'space-between', paddingBottom: 50, },
+  container: { flex: 1, justifyContent: 'space-between', paddingBottom: PADDING.huge, },
   top_content: {
     width: 228,
     flexDirection: 'row',
@@ -88,13 +89,13 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     borderBottomWidth: 1,
     borderBottomColor: '#D8D9DD',
-    marginLeft: 36,
-    paddingVertical: 12,
-    marginBottom: 12,
+    marginLeft: MARGIN.huge,
+    paddingVertical: PADDING.medium,
+    marginBottom: MARGIN.medium,
   },
-  user_photo: { borderRadius: 1000, width: 68, height: 68 },
+  user_photo: { borderRadius: RADIUS.huge, width: 68, height: 68 },
 
-  logo_container: { marginLeft: 20, gap: 8, },
+  logo_container: { marginLeft: MARGIN.xLarge, gap: 8, },
 
   n2_logo: {
     width: 147,
@@ -102,7 +103,7 @@ export const styles = StyleSheet.create({
   },
   company: {
     fontWeight: 500,
-    fontSize: 12,
+    fontSize: TEXT_SIZE.small,
     lineHeight: 16,
     letterSpacing: 0.5,
     color: '#485B69'
