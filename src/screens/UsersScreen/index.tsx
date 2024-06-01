@@ -18,7 +18,7 @@ const UsersScreen = () => {
     const [searchUser, setSearchUser] = useState('')
     const [users, setUsers] = useState<[User] | []>([])
 
-    const renderUsers: ListRenderItem<User> = ({ item, index }) => <UserCard user={item} />
+    const renderUsers: ListRenderItem<User> = ({ item, index }) => <UserCard user={item} index={index} />
 
     const totalPages = Math.ceil(users.length / 10)
 

@@ -13,6 +13,7 @@ import { ITEMS_PER_PAGE } from '../../constants/itemsPerPage'
 import MainLayout from '../../layouts/MainLayout'
 import CustomFlatList from '../../components/customFlatList'
 import { TEXT_SIZE } from '../../styles/ConstantValues'
+import Animated, { FadeInUp } from 'react-native-reanimated'
 
 
 
@@ -42,12 +43,14 @@ const TodosScreen: React.FC = () => {
     )
 
     const renderTodos: ListRenderItem<TodosTypes> = ({ item, index }) => (
-        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, }}>
+        <Animated.View
+        style={{ flexDirection: 'row', alignItems: 'center', gap: 8, }}
+        entering={FadeInUp.delay(100 * index).duration(100).springify().damping(12)}> 
             {
                 item.completed ? <CheckboxCheckedIcon /> : <CheckboxUncheckedIcon />
             }
             <Text style={{ fontSize: TEXT_SIZE.normal, fontWeight: 400, }}>{item.title}</Text>
-        </View>
+        </Animated.View>
     )
 
     const filteredTodos = currentTodos.filter(item => item.title.toLowerCase().includes(searchTodos.toLowerCase()))

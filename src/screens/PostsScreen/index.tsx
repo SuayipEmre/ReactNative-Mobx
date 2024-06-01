@@ -30,7 +30,7 @@ const PostsScreen = () => {
         if (posts) setPosts(posts)
     }
 
-    const renderPosts: ListRenderItem<PostsTypes> = ({ item, index }) => <PostCard post={item} />
+    const renderPosts: ListRenderItem<PostsTypes> = ({ item, index }) => <PostCard post={item} index={index} />
 
     const totalPages = Math.ceil(posts.length / ITEMS_PER_PAGE)
 

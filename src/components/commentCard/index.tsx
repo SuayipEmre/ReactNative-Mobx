@@ -5,11 +5,11 @@ import { Comment } from '../../types/CommentsTypes'
 import styles from './styles'
 type CommentCardProps = {
     comment : Comment,
-    index:number
+  
 }
-const CommentCard : React.FC<CommentCardProps> = ({comment, index}) => {
+const CommentCard : React.FC<CommentCardProps> = ({comment}) => {
     return (
-        <View key={index} style={styles.container}>
+        <View  style={styles.container}>
             <NoUserProfilePhotoIcon />
             <View style={styles.text_container}>
                 <Text style={styles.name}>{comment.name}</Text>

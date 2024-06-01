@@ -16,8 +16,8 @@ const FavoritesScreen = observer(() => {
                         <>
                             <Text style={styles.title}>Favori Kullanıcıların</Text>
                             {
-                                favoriteUsersStore.favoriteUsers.map(item => <View key={item.id}>
-                                    <UserCard user={item} />
+                                favoriteUsersStore.favoriteUsers.map((item, index) => <View key={item.id}>
+                                    <UserCard user={item} index={index} />
                                 </View>)
                             }</>
                     ) : <Text>Hiç favori kullanıcın yok.</Text>

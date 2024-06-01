@@ -7,6 +7,7 @@ import { Comment } from '../../types/CommentsTypes'
 import MainLayout from '../../layouts/MainLayout'
 import CommentCard from '../../components/commentCard'
 import { MARGIN, TEXT_SIZE } from '../../styles/ConstantValues'
+import Animated, { FadeInUp } from 'react-native-reanimated'
 
 type PostDetailScreenProps = NativeStackScreenProps<PostsNavigatorStackParamList, 'PostDetailScreen'>
 const PostDetailScreen: React.FC<PostDetailScreenProps> = ({ route }) => {
@@ -22,7 +23,9 @@ const PostDetailScreen: React.FC<PostDetailScreenProps> = ({ route }) => {
     }, [])
 
     return (
-        <View style={styles.container}>
+        <Animated.View 
+        entering={FadeInUp.delay(100).duration(100).springify()}
+        style={styles.container}>
             <MainLayout>
                 <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
                     <Text style={styles.title}>{post.title}</Text>
@@ -33,13 +36,18 @@ const PostDetailScreen: React.FC<PostDetailScreenProps> = ({ route }) => {
                     <Text style={styles.comment_title}>Comments</Text>
                         <View style={{ gap: 20 }}>
                             {
-                                comments?.map((item, index) => <CommentCard comment={item} index={index} />)
+                                comments?.map((item, index) => <View>
+                                    <CommentCard comment={item} />
+                                </View>)
                             }
                         </View>
+                        {
+                            //
+                        }
                     </View>
                 </ScrollView>
             </MainLayout>
-        </View>
+        </Animated.View>
     )
 }
 

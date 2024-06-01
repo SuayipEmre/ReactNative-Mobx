@@ -6,17 +6,21 @@ import { User } from '../../types/UsersTypes'
 import styles from './styles'
 import UserInformationModal from '../userInformationModal'
 import { TouchableOpacity } from 'react-native-gesture-handler'
+import Animated, { FadeInLeft } from 'react-native-reanimated'
 
 type UserCardProps = {
-    user: User
+    user: User,
+    index : number
 }
-const UserCard: React.FC<UserCardProps> = ({ user }) => {
+const UserCard: React.FC<UserCardProps> = ({ user, index }) => {
     const [modalVisible, setModalVisible] = useState(false)
     
     return (
         <TouchableOpacity style={styles.container} >
 
-            <View style={styles.left_side_content}>
+            <Animated.View
+            entering={FadeInLeft.delay(100 * index).duration(100).springify().damping(12)}
+            style={styles.left_side_content}>
                 <DefaultUserIcon />
                 <View>
 
@@ -28,7 +32,7 @@ const UserCard: React.FC<UserCardProps> = ({ user }) => {
                     <Text style={styles.phone}>{user.phone}</Text>
 
                 </View>
-            </View>
+            </Animated.View>
             <UserInformationModal modalVisible={modalVisible} user={user} setModalVisible={setModalVisible} />
 
             <TouchableOpacity onPress={() => setModalVisible(true)}>

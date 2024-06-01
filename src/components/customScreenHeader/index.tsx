@@ -7,6 +7,7 @@ import SearchInput from '../searchInput';
 import UserIcon from '../../icons/UserIcon';
 import styles from './styles';
 import CustomHeaderBottomContent from '../todosScreenTopContent';
+import Animated, { FadeInUp } from 'react-native-reanimated';
 
 type TodosScreenNavigationProp = DrawerNavigationProp<DrawerMenuStackParamList>
 
@@ -20,8 +21,10 @@ type CustomScreenHeaderProps = {
 
 const CustomScreenHeader: React.FC<CustomScreenHeaderProps> = ({ navigation, inputPlaceHolder, inputValue, setInputValue }) => {
     return (
-        <>
-            <View style={styles.container}>
+        <Animated.View
+        entering={FadeInUp.delay(100).duration(100).springify().damping(12)}>
+            <View
+                style={styles.container}>
                 <View style={styles.content_wrapper}>
                     <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
                         <MenuIcon />
@@ -34,7 +37,7 @@ const CustomScreenHeader: React.FC<CustomScreenHeaderProps> = ({ navigation, inp
             </View>
 
             <CustomHeaderBottomContent />
-        </>
+        </Animated.View>
     )
 }
 
