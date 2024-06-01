@@ -4,7 +4,8 @@ import { PostsNavigatorStackParamList } from "./PostsNavigatorStackParamLists"
 export type DrawerMenuStackParamList = {
   TodosScreen: undefined,
   UsersScreen: undefined,
-  PostsNavigator: NavigatorScreenParams<PostsNavigatorStackParamList>
+  PostsNavigator: NavigatorScreenParams<PostsNavigatorStackParamList>,
+  FavoritesScreen : undefined
 }
 
 

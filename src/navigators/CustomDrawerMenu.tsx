@@ -5,6 +5,7 @@ import { DrawerContentComponentProps, DrawerContentScrollView } from '@react-nav
 import PostsIcon from '../icons/PostsIcon'
 import TodosIcon from '../icons/TodosIcon'
 import CustomDrawerItem from './CustomDrawerItem'
+import HeartIcon from '../icons/HeartIcon'
 
 
 type CustomDrawerMenuPropsTypes = {
@@ -52,6 +53,15 @@ const CustomDrawerMenu: React.FC<CustomDrawerMenuPropsTypes> = ({ focused, props
           icon={<CustomSvgComponent />}
           onPress={() => props.navigation.navigate('UsersScreen')}
         />
+
+        <CustomDrawerItem
+          {...props}
+          isFocused={focused === 'FavoritesScreen'}
+          label='Favorilerim'
+          icon={<HeartIcon />}
+          onPress={() => props.navigation.navigate('FavoritesScreen')}
+        />
+
 
 
       </View>

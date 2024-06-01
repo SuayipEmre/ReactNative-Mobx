@@ -12,8 +12,10 @@ class FavoriteUsersStore {
         makeAutoObservable(this);
     }
 
-    // Kullanıcıları favorilere ekleme
-    async addFavoriteUser(user: User) {
+    
+
+
+    addFavoriteUser = async(user : User) => {
         this.loading = true
         this.error = null
         try {
@@ -39,8 +41,7 @@ class FavoriteUsersStore {
         }
     }
 
-
-    async loadFavoriteUsers() {
+    loadFavoriteUsers = async() => {
         this.loading = true;
         this.error = null;
         try {
