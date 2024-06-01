@@ -38,6 +38,32 @@ class FavoriteUsersStore {
         }
     }
 
+    removeFavoriteUser = async(user: User) => {
+        this.loading = true;
+        this.error = null;
+        try {
+            const existingFavorites : User[] = await getFavoriteCharactersFromStorage();
+
+            if (existingFavorites) {
+                const newFavorites = existingFavorites.filter(item => item.id !== user.id);
+                await AsyncStorage.setItem('favoriteUsers', JSON.stringify(newFavorites));
+
+                runInAction(() => {
+                    this.favoriteUsers = newFavorites;
+                    this.loading = false;
+                });
+            }
+
+        } catch (error) {
+            runInAction(() => {
+                this.error = 'Failed to remove favorite user';
+                this.loading = false;
+            });
+            console.error('Failed to remove favorite user:', error);
+        }
+    }
+
+
     loadFavoriteUsers = async() => {
         this.loading = true;
         this.error = null;

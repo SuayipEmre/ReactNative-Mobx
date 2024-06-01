@@ -1,4 +1,4 @@
-import { ActivityIndicator, Modal, Text, View } from 'react-native'
+import {  Modal, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { User } from '../../types/UsersTypes'
 import LocationIcon from '../../icons/LocationIcon'
@@ -10,25 +10,37 @@ import { TouchableOpacity } from 'react-native-gesture-handler'
 import favoriteUsersStore from '../../store/FavoriteUsers'
 import { observer } from 'mobx-react'
 import HeartIcon from '../../icons/HeartIcon'
+import OutlineHeartIcon from '../../icons/OutlineHeartIcon'
 
 type UserInformationModalProps = {
     modalVisible: boolean,
-    setModalVisible : (value : boolean) => void
+    setModalVisible: (value: boolean) => void
     user: User
 }
 const UserInformationModal: React.FC<UserInformationModalProps> = observer(({ modalVisible, user, setModalVisible }) => {
 
     const [isAlreadyInFavorites, setIsAlreadyInFavorites] = useState(false)
 
+
     const handleAddUserToFavorites = async () => {
         await favoriteUsersStore.addFavoriteUser(user)
-        setModalVisible
+        const isFavorites = favoriteUsersStore.favoriteUsers.some(item => item.id == user.id)
+        setIsAlreadyInFavorites(isFavorites)
+        setModalVisible(false)
     }
+
+    const handleRemoveUserFromFavorites = async () => {
+        await favoriteUsersStore.removeFavoriteUser(user)
+        setIsAlreadyInFavorites(false)
+        setModalVisible(false)
+    }
+
 
     useEffect(() => {
         const isFavorites = favoriteUsersStore.favoriteUsers.some(item => item.id == user.id)
         setIsAlreadyInFavorites(isFavorites)
-    }, [])
+    }, [favoriteUsersStore.favoriteUsers])
+
     return (
         <View>
             <Modal
@@ -45,18 +57,15 @@ const UserInformationModal: React.FC<UserInformationModalProps> = observer(({ mo
                         }}>
                             <Text style={styles.user_name}>{user.name}</Text>
                             {
-                                isAlreadyInFavorites ? <View style={{flexDirection:'row', alignItems:'center', gap:6,}}>
-                                    <Text> Remove from </Text>
-                                    <HeartIcon />
-                                </View> : <TouchableOpacity onPress={handleAddUserToFavorites}>
-                                   <HeartIcon />
-                                </TouchableOpacity>
+                                isAlreadyInFavorites ?
+                                    <TouchableOpacity onPress={handleRemoveUserFromFavorites}>
+                                        <HeartIcon />
+                                    </TouchableOpacity>
+                                    :
+                                    <TouchableOpacity onPress={handleAddUserToFavorites}>
+                                        <OutlineHeartIcon />
+                                    </TouchableOpacity>
                             }
-
-                            {
-                                favoriteUsersStore.loading && <ActivityIndicator />
-                            }
-
                         </View>
                         <UserInformationItem icon={<LocationIcon />} title='Konum' subText={`${user.address.street} / ${user.address.city}`} />
                         <UserInformationItem icon={<CompanyIcon />} title='Firma' subText={user.company.name} />
