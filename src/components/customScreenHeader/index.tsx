@@ -22,7 +22,7 @@ type CustomScreenHeaderProps = {
 const CustomScreenHeader: React.FC<CustomScreenHeaderProps> = ({ navigation, inputPlaceHolder, inputValue, setInputValue }) => {
     return (
         <Animated.View
-        entering={FadeInUp.delay(100).duration(100).springify().damping(12)}>
+            entering={FadeInUp.delay(100).duration(100).springify().damping(12)}>
             <View
                 style={styles.container}>
                 <View style={styles.content_wrapper}>

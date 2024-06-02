@@ -9,7 +9,7 @@ class FavoriteUsersStore {
     error: string | null = null;
 
     constructor() {
-        makeAutoObservable(this);
+        makeAutoObservable(this)
     }
 
     addFavoriteUser = async (user: User) => {
@@ -84,6 +84,26 @@ class FavoriteUsersStore {
                 this.loading = false
             });
             console.error('Failed to load favorite users:', error)
+        }
+    }
+
+    clearAllFavoriteUsers = async () => {
+        this.loading = true;
+        this.error = null;
+        try {
+            await AsyncStorage.removeItem('favoriteUsers');
+
+            runInAction(() => {
+                this.favoriteUsers = [];
+                this.loading = false;
+            });
+
+        } catch (error) {
+            runInAction(() => {
+                this.error = 'Failed to clear favorite users';
+                this.loading = false;
+            });
+            console.error('Failed to clear favorite users:', error);
         }
     }
 }
