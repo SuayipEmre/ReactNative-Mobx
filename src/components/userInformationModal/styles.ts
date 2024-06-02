@@ -1,40 +1,42 @@
-import { Dimensions, StyleSheet } from "react-native";
-import { MARGIN, PADDING, RADIUS, TEXT_SIZE } from "../../styles/ConstantValues";
-import { COLORS } from "../../styles/colors";
+import { StyleSheet } from 'react-native';
+import { MARGIN, PADDING, RADIUS, TEXT_SIZE } from '../../styles/ConstantValues';
+import { COLORS } from '../../styles/colors';
 
-const { width} = Dimensions.get('screen')
 export default StyleSheet.create({
-
-    modalView: {
-        position: 'absolute',
-        bottom: 0,
-        height: 344,
-        width: width,
-        backgroundColor: COLORS.background.white,
-        shadowColor: '#000',
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: RADIUS.small,
-        elevation: 5,
-        paddingVertical: PADDING.large,
-        paddingHorizontal: PADDING.medium,
+  modalContainer: {
+    justifyContent: 'flex-end',
+    margin: 0,
+  },
+  modalView: {
+    width: '100%',
+    height: 344,
+    backgroundColor: COLORS.background.white,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
     },
-    content: {
-        width: '90%',
-        flex: 1,
-        alignSelf: 'center',
-        marginTop: MARGIN.medium,
-
-    },
-    user_name: {
-        fontWeight: 600,
-        fontSize: TEXT_SIZE.xLarge,
-        letterSpacing: 0.4,
-        color: COLORS.text.primary,
-    },
-  
-
+    shadowOpacity: 0.25,
+    shadowRadius: RADIUS.small,
+    elevation: 5,
+    paddingVertical: PADDING.large,
+    paddingHorizontal: PADDING.medium,
+  },
+  content: {
+    flex: 1,
+    width: '100%',
+    alignSelf: 'center',
+    marginTop: MARGIN.medium,
+  },
+  top_content: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  user_name: {
+    fontWeight: '600',
+    fontSize: TEXT_SIZE.xLarge,
+    letterSpacing: 0.4,
+    color: COLORS.text.primary,
+  },
 });

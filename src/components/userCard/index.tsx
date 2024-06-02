@@ -10,20 +10,19 @@ import Animated, { FadeInLeft } from 'react-native-reanimated'
 
 type UserCardProps = {
     user: User,
-    index : number
+    index: number
 }
 const UserCard: React.FC<UserCardProps> = ({ user, index }) => {
     const [modalVisible, setModalVisible] = useState(false)
-    
+
     return (
         <TouchableOpacity style={styles.container} >
 
             <Animated.View
-            entering={FadeInLeft.delay(100 * index).duration(100).springify().damping(12)}
-            style={styles.left_side_content}>
+                entering={FadeInLeft.delay(100 * index).duration(100).springify().damping(12)}
+                style={styles.left_side_content}>
                 <DefaultUserIcon />
                 <View>
-
                     <View>
                         <Text style={styles.name}>{user.name}</Text>
                         <Text style={styles.email}>{user.email}</Text>
