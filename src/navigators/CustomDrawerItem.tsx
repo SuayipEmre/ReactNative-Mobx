@@ -1,8 +1,9 @@
 import { StyleSheet, Text, View } from "react-native"
 import { TouchableOpacity } from "react-native-gesture-handler"
 import ChevronRightIcon from "../icons/ChevronRightIcon"
-import { PADDING } from "../styles/ConstantValues"
+import { GAP, PADDING } from "../styles/ConstantValues"
 import { COLORS } from "../styles/colors"
+import { commonStyles } from "../styles/CommonStyles"
 
 
 type CustomDrawerItemProps = {
@@ -36,17 +37,14 @@ const CustomDrawerItem: React.FC<CustomDrawerItemProps> = ({ icon, isFocused, la
 export default CustomDrawerItem
 export const styles = StyleSheet.create({
     container: {
-        flexDirection: 'row',
-        backgroundColor: 'red',
-        justifyContent: 'space-between',
+        ...commonStyles.rowSpaceBetween,
         padding: PADDING.large,
         borderBottomWidth : 1,
-        borderBottomColor : '#0000001F'
+        borderBottomColor : COLORS.border.primary
     },
     left_side:{
-        flexDirection:'row',
-        alignItems:'center',
-        gap:10,
+       ...commonStyles.centerElementsInRow,
+        gap:GAP.small,
     },
     active_bg: {
         backgroundColor:  COLORS.drawerMenu.active_bg,

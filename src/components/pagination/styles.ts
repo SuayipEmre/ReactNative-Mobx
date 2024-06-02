@@ -1,13 +1,12 @@
 import { StyleSheet } from "react-native";
 import { MARGIN, PADDING, TEXT_SIZE } from "../../styles/ConstantValues";
 import { COLORS } from "../../styles/colors";
+import { commonStyles } from "../../styles/CommonStyles";
 
 
 export default StyleSheet.create({
     container: {
-        flexDirection:'row',
-        alignItems:'center',
-        justifyContent: 'space-between',
+        ...commonStyles.centerSpaceBetweenRow,
         marginVertical: MARGIN.medium,
         paddingHorizontal: PADDING.xLarge,
         width:'100%',

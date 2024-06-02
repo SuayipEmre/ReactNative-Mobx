@@ -1,26 +1,23 @@
 import { StyleSheet } from "react-native"
-import { MARGIN, RADIUS, TEXT_SIZE } from "../../styles/ConstantValues"
-import { COLORS } from "../../styles/colors"
+import { GAP, MARGIN, RADIUS, TEXT_SIZE } from "../../../styles/ConstantValues"
+import { COLORS } from "../../../styles/colors"
+import { commonStyles } from "../../../styles/CommonStyles"
 
 export default StyleSheet.create({
   
     top_content: {
-        flexDirection: 'row',
+        ...commonStyles.centerSpaceBetweenRow,
         width: 385,
         marginTop:MARGIN.xLarge,
         borderWidth: 1,
         borderColor: COLORS.border.secondary,
-        alignItems: 'center',
-        justifyContent: 'space-between',
         height: 32,
         borderRadius: RADIUS.medium,
     },
     top_content_item: {
         width: 192.5,
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'row',
-        gap: 12,
+        ...commonStyles.centerAll,
+        gap: GAP.medium,
 
     },
     top_content_item_text: {

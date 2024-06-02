@@ -6,8 +6,9 @@ import MenuIcon from '../../icons/MenuIcon';
 import SearchInput from '../searchInput';
 import UserIcon from '../../icons/UserIcon';
 import styles from './styles';
-import CustomHeaderBottomContent from '../todosScreenTopContent';
+import CustomHeaderBottomContent from './headerBottomContent';
 import Animated, { FadeInUp } from 'react-native-reanimated';
+import { COLORS } from '../../styles/colors';
 
 type TodosScreenNavigationProp = DrawerNavigationProp<DrawerMenuStackParamList>
 
@@ -30,7 +31,7 @@ const CustomScreenHeader: React.FC<CustomScreenHeaderProps> = ({ navigation, inp
                         <MenuIcon />
                     </TouchableOpacity>
                     <SearchInput searchValue={inputValue} setSearchValue={setInputValue} placeholder={inputPlaceHolder} />
-                    <UserIcon />
+                    <UserIcon color={COLORS.text.primary} />
 
                 </View>
 

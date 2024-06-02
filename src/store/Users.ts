@@ -9,7 +9,6 @@ class UsersStore {
     error: string | null = null;
     currentPage: number = 1;
     searchUser: string = '';
-    isUserInfoModalVisible : boolean = false
 
     constructor() {
         makeAutoObservable(this);
@@ -42,10 +41,7 @@ class UsersStore {
     setSearchUser = (searchTerm: string) => {
         this.searchUser = searchTerm;
     }
-    setIsUserInfoModalVisible = (isModalVisible : boolean) => {
-      this.isUserInfoModalVisible = isModalVisible
-    }
-
+  
     get totalPages() {
         return Math.ceil(this.users.length / 10)
     }

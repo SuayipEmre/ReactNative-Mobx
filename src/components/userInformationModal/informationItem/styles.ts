@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native";
-import { PADDING, TEXT_SIZE } from "../../../styles/ConstantValues";
+import { GAP, PADDING, TEXT_SIZE } from "../../../styles/ConstantValues";
 import { COLORS } from "../../../styles/colors";
+import { commonStyles } from "../../../styles/CommonStyles";
 
 export default StyleSheet.create({
     content_item:{
@@ -9,12 +10,11 @@ export default StyleSheet.create({
         paddingVertical : PADDING.medium,
         paddingHorizontal : PADDING.small,
         height : 81,
-        gap:10,
+        gap:GAP.small,
     },
     content_item_header:{
-        flexDirection:'row',
-        alignItems:'center',
-        gap:10,
+       ...commonStyles.centerElementsInRow,
+        gap:GAP.small,
     },
     title:{
         fontWeight:'500',

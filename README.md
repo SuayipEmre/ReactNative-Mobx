@@ -13,6 +13,7 @@
 6. React Native SVG
 7. Reanimated
 8. Axios
+9. React Native Modal
 
 
 ### Usage

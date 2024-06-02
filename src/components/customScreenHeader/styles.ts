@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native";
 import { MARGIN } from "../../styles/ConstantValues";
 import { COLORS } from "../../styles/colors";
+import { commonStyles } from "../../styles/CommonStyles";
 
 export default StyleSheet.create({
     container : {
@@ -13,9 +14,7 @@ export default StyleSheet.create({
     },
 
     content_wrapper:{
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
+       ...commonStyles.centerSpaceBetweenRow,
     }
 
 })

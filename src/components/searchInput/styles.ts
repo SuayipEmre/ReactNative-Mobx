@@ -1,15 +1,15 @@
 import { StyleSheet } from "react-native";
 import { COLORS } from "../../styles/colors";
-import { PADDING, RADIUS } from "../../styles/ConstantValues";
+import { GAP, PADDING, RADIUS } from "../../styles/ConstantValues";
+import { commonStyles } from "../../styles/CommonStyles";
 
 export default StyleSheet.create({
     container: {
+        ...commonStyles.centerElementsInRow,
         width: 310,
         height: 40,
         borderRadius: RADIUS.medium,
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap:10,
+        gap:GAP.small,
         paddingLeft:PADDING.small,
         backgroundColor: COLORS.background.secondary,
     },

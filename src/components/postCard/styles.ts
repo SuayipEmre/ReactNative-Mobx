@@ -1,18 +1,23 @@
 import { StyleSheet } from "react-native";
-import { MARGIN, PADDING, RADIUS, TEXT_SIZE } from "../../styles/ConstantValues";
+import { GAP, MARGIN, PADDING, RADIUS, TEXT_SIZE } from "../../styles/ConstantValues";
 import { COLORS } from "../../styles/colors";
+import { commonStyles } from "../../styles/CommonStyles";
 
 export default StyleSheet.create({
     container: {
         width: 385,
         borderRadius: RADIUS.medium,
         padding: PADDING.small,
-        gap: 16,
+        gap: GAP.large,
         borderWidth: 1,
         borderColor: COLORS.border.primary,
         marginTop: MARGIN.xLarge,
     },
-    title: { fontSize: TEXT_SIZE.medium, fontWeight: 600, color: COLORS.text.primary },
+    title: {
+        fontSize: TEXT_SIZE.medium,
+        fontWeight: 600,
+        color: COLORS.text.primary
+    },
     body: {
         fontSize: TEXT_SIZE.normal,
         fontWeight: 400,
@@ -22,9 +27,8 @@ export default StyleSheet.create({
     },
     bottom_content: {
         alignSelf: 'flex-end',
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 10,
+        ...commonStyles.centerElementsInRow,
+        gap: GAP.small,
         width: 131,
         height: 32,
     },

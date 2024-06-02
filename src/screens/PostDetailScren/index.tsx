@@ -5,7 +5,7 @@ import { PostsNavigatorStackParamList } from '../../types/PostsNavigatorStackPar
 import { Comment } from '../../types/CommentsTypes'
 import MainLayout from '../../layouts/MainLayout'
 import CommentCard from '../../components/commentCard'
-import { MARGIN, TEXT_SIZE } from '../../styles/ConstantValues'
+import { GAP, MARGIN, TEXT_SIZE } from '../../styles/ConstantValues'
 import Animated, { FadeInUp } from 'react-native-reanimated'
 import { COLORS } from '../../styles/colors'
 import { apiCall } from '../../services/ApiRequest'
@@ -35,7 +35,7 @@ const PostDetailScreen: React.FC<PostDetailScreenProps> = ({ route }) => {
 
                     <View style={styles.comments_container}>
                         <Text style={styles.comment_title}>Comments</Text>
-                        <View style={{ gap: 20 }}>
+                        <View style={{ gap: GAP.xLarge }}>
                             {
                                 comments?.map((item, index) => <View key={item.id}>
                                     <CommentCard comment={item} />
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
         color: COLORS.text.primary,
         marginTop: MARGIN.medium,
     },
-    comments_container:{ marginTop: MARGIN.xLarge, gap: 10},
+    comments_container:{ marginTop: MARGIN.xLarge, gap: GAP.small},
     comment_title: {
         fontSize: TEXT_SIZE.xLarge,
         fontWeight: '600',

@@ -36,3 +36,12 @@ export const RADIUS = {
   huge: 1000,
 }
 
+
+export const GAP = {
+  tiny: 8,
+  small: 10,
+  medium: 12,
+  large: 16,
+  xLarge: 20,
+}
+

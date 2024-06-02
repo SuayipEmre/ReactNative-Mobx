@@ -11,6 +11,7 @@ import CustomFlatList from '../../components/customFlatList';
 import { observer } from 'mobx-react';
 import usersStore from '../../store/Users';
 import { COLORS } from '../../styles/colors';
+import { GAP } from '../../styles/ConstantValues';
 
 const UsersScreen: React.FC = observer(() => {
     const navigation = useNavigation<DrawerNavigationProp<DrawerMenuStackParamList>>();
@@ -52,7 +53,7 @@ const UsersScreen: React.FC = observer(() => {
                     onPageChange={usersStore.setCurrentPage}
                     totalPages={usersStore.totalPages}
                 />}
-                contentContainerStyle={{ gap: 12 }}
+                contentContainerStyle={{ gap: GAP.medium }}
             />
         );
     }

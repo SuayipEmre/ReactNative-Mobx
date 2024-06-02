@@ -11,6 +11,7 @@ import CustomFlatList from '../../components/customFlatList';
 import { observer } from 'mobx-react';
 import postsStore from '../../store/Posts';
 import { COLORS } from '../../styles/colors';
+import { GAP } from '../../styles/ConstantValues';
 
 const PostsScreen: React.FC = observer(() => {
     const navigation = useNavigation<DrawerNavigationProp<DrawerMenuStackParamList>>();
@@ -52,7 +53,7 @@ const PostsScreen: React.FC = observer(() => {
                     onPageChange={postsStore.setCurrentPage}
                     totalPages={postsStore.totalPages}
                 />}
-                contentContainerStyle={{ gap: 12 }}
+                contentContainerStyle={{ gap: GAP.medium }}
             />
         );
     }

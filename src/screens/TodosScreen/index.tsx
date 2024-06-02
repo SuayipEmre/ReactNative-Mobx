@@ -12,6 +12,7 @@ import TodoCard from '../../components/todoCard'
 import todosStore from '../../store/Todos'
 import { observer } from 'mobx-react'
 import { COLORS } from '../../styles/colors'
+import { GAP } from '../../styles/ConstantValues'
 
 const TodosScreen: React.FC = observer(() => {
     const navigation = useNavigation<DrawerNavigationProp<DrawerMenuStackParamList>>()
@@ -52,7 +53,7 @@ const TodosScreen: React.FC = observer(() => {
                     onPageChange={todosStore.setCurrentPage}
                     totalPages={todosStore.totalPages}
                 />}
-                contentContainerStyle={{ gap: 12 }}
+                contentContainerStyle={{ gap: GAP.medium }}
             />
         )
     }

@@ -1,7 +1,7 @@
 import { Text, View } from 'react-native'
 import React from 'react'
-import SortIcon from '../../icons/SortIcon'
-import FilterIcon from '../../icons/FilterIcon'
+import SortIcon from '../../../icons/SortIcon'
+import FilterIcon from '../../../icons/FilterIcon'
 import styles from './styles'
 
 const CustomHeaderBottomContent = () => {

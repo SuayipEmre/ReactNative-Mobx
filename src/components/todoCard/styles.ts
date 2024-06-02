@@ -1,12 +1,12 @@
 import { StyleSheet } from "react-native";
-import { TEXT_SIZE } from "../../styles/ConstantValues";
+import { GAP, TEXT_SIZE } from "../../styles/ConstantValues";
 import { COLORS } from "../../styles/colors";
+import { commonStyles } from "../../styles/CommonStyles";
 
 export default StyleSheet.create({
     container: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 8,
+       ...commonStyles.centerElementsInRow,
+        gap: GAP.tiny,
     },
     title : {
         fontSize: TEXT_SIZE.normal,

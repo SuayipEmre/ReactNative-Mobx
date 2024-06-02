@@ -1,13 +1,14 @@
 import { Image, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import CustomSvgComponent from '../icons/TodosIcon'
 import { DrawerContentComponentProps, DrawerContentScrollView } from '@react-navigation/drawer'
 import PostsIcon from '../icons/PostsIcon'
 import TodosIcon from '../icons/TodosIcon'
 import CustomDrawerItem from './CustomDrawerItem'
 import HeartIcon from '../icons/HeartIcon'
-import { MARGIN, PADDING, RADIUS, TEXT_SIZE } from '../styles/ConstantValues'
+import { GAP, MARGIN, PADDING, RADIUS, TEXT_SIZE } from '../styles/ConstantValues'
 import { COLORS } from '../styles/colors'
+import UserIcon from '../icons/UserIcon'
+import { commonStyles } from '../styles/CommonStyles'
 
 
 type CustomDrawerMenuPropsTypes = {
@@ -52,7 +53,7 @@ const CustomDrawerMenu: React.FC<CustomDrawerMenuPropsTypes> = ({ focused, props
           {...props}
           isFocused={focused === 'UsersScreen'}
           label='Kullanıcılar'
-          icon={<CustomSvgComponent />}
+          icon={<UserIcon color={COLORS.drawerMenu.active_text} />}
           onPress={() => props.navigation.navigate('UsersScreen')}
         />
 
@@ -89,18 +90,24 @@ export const styles = StyleSheet.create({
   },
   top_content: {
     width: 228,
-    flexDirection: 'row',
-    gap: 12,
-    alignItems: 'center',
+    ...commonStyles.centerElementsInRow,
+    gap: GAP.medium,
     borderBottomWidth: 1,
     borderBottomColor: COLORS.border.secondary,
     marginLeft: MARGIN.huge,
     paddingVertical: PADDING.medium,
     marginBottom: MARGIN.medium,
   },
-  user_photo: { borderRadius: RADIUS.huge, width: 68, height: 68 },
+  user_photo: {
+    borderRadius: RADIUS.huge,
+    width: 68,
+    height: 68
+  },
 
-  logo_container: { marginLeft: MARGIN.xLarge, gap: 8, },
+  logo_container: {
+    marginLeft: MARGIN.xLarge,
+    gap: GAP.tiny
+  },
 
   n2_logo: {
     width: 147,

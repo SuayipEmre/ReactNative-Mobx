@@ -11,6 +11,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Alert } from 'react-native';
 import favoriteUsersStore from '../store/FavoriteUsers';
 import { COLORS } from '../styles/colors';
+import { MARGIN } from '../styles/ConstantValues';
 
 
 const Drawer = createDrawerNavigator<DrawerMenuStackParamList>()
@@ -65,7 +66,7 @@ const RootNavigator = () => {
         headerShown: true,
         title: 'Favorilerim',
         headerTintColor: COLORS.text.secondary,
-        headerRight: () => <TouchableOpacity style={{ marginHorizontal: 12, }} onPress={handleClearFavoriteUsers}>
+        headerRight: () => <TouchableOpacity style={{ marginHorizontal: MARGIN.medium, }} onPress={handleClearFavoriteUsers}>
           <TrashIcon />
         </TouchableOpacity>
       }} />

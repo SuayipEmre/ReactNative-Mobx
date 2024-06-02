@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { PADDING, RADIUS, TEXT_SIZE } from "../../styles/ConstantValues";
+import { GAP, PADDING, RADIUS, TEXT_SIZE } from "../../styles/ConstantValues";
 import { COLORS } from "../../styles/colors";
 
 export default StyleSheet.create({
@@ -9,7 +9,7 @@ export default StyleSheet.create({
         borderWidth: 1,
         borderColor: COLORS.border.secondary,
         padding: PADDING.small,
-        gap: 16,
+        gap: GAP.large,
         borderRadius: RADIUS.medium,
     },
     text_container: {

@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { MARGIN, PADDING, RADIUS, TEXT_SIZE } from '../../styles/ConstantValues';
 import { COLORS } from '../../styles/colors';
+import { commonStyles } from '../../styles/CommonStyles';
 
 export default StyleSheet.create({
   modalContainer: {
@@ -29,9 +30,7 @@ export default StyleSheet.create({
     marginTop: MARGIN.medium,
   },
   top_content: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    ...commonStyles.centerSpaceBetweenRow,
   },
   user_name: {
     fontWeight: '600',
