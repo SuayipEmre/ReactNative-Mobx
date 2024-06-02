@@ -11,7 +11,7 @@ export default StyleSheet.create({
         alignItems: 'center',
         gap:10,
         paddingLeft:PADDING.small,
-        backgroundColor: COLORS.background.primary,
+        backgroundColor: COLORS.background.secondary,
     },
     
 })

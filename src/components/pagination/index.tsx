@@ -14,7 +14,10 @@ type PaginationProps = {
 const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPageChange, listRef }) => {
 
 
-    const handlePreviousPage = () => currentPage > 1 && onPageChange(currentPage - 1)
+    const handlePreviousPage = () => {
+        currentPage > 1 && onPageChange(currentPage - 1)
+        scrollTopHandler(listRef)
+    }
 
 
     const handleNextPage = () => {
@@ -26,13 +29,13 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
     return (
         <View style={styles.container}>
             <TouchableOpacity onPress={handlePreviousPage} disabled={currentPage === 1}>
-                <Text style={[{ color: '#101213' }, styles.button, currentPage === 1 && { color: '#F1F1F1' }]}>Previous</Text>
+                <Text style={[styles.active_text, styles.button, currentPage === 1 && styles.inactive_text]}>Previous</Text>
             </TouchableOpacity>
-            <Text style={[{ color: '#101213' }, styles.pageInfo]}>
+            <Text style={styles.pageInfo}>
                 Page {currentPage} of {totalPages}
             </Text>
             <TouchableOpacity onPress={handleNextPage} disabled={currentPage === totalPages}>
-                <Text style={[{ color: '#101213' }, styles.button, currentPage === totalPages && { color: '#F1F1F1' }]}>Next</Text>
+                <Text style={[styles.active_text, styles.button, currentPage === totalPages && styles.inactive_text]}>Next</Text>
             </TouchableOpacity>
         </View>
     );

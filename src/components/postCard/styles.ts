@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { MARGIN, PADDING, RADIUS, TEXT_SIZE } from "../../styles/ConstantValues";
+import { COLORS } from "../../styles/colors";
 
 export default StyleSheet.create({
     container: {
@@ -8,11 +9,17 @@ export default StyleSheet.create({
         padding: PADDING.small,
         gap: 16,
         borderWidth: 1,
-        borderColor: '#0000001F',
+        borderColor: COLORS.border.primary,
         marginTop: MARGIN.xLarge,
     },
-    title: { fontSize: TEXT_SIZE.medium, fontWeight: 600, color: '#26303E' },
-    body: { fontSize: TEXT_SIZE.normal, fontWeight: 400, lineHeight: 20, letterSpacing: 0.2, color: '#000000B2' },
+    title: { fontSize: TEXT_SIZE.medium, fontWeight: 600, color: COLORS.text.primary },
+    body: {
+        fontSize: TEXT_SIZE.normal,
+        fontWeight: 400,
+        lineHeight: 20,
+        letterSpacing: 0.2,
+        color: COLORS.text.secondary
+    },
     bottom_content: {
         alignSelf: 'flex-end',
         flexDirection: 'row',
@@ -21,5 +28,10 @@ export default StyleSheet.create({
         width: 131,
         height: 32,
     },
-    seemore: { fontWeight: 500, lineHeight: 20, fontSize: TEXT_SIZE.normal, },
+    seemore: {
+        fontWeight: 500,
+        lineHeight: 20,
+        fontSize: TEXT_SIZE.normal,
+        color: COLORS.text.primary
+    },
 })

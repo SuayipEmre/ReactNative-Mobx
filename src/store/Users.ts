@@ -1,6 +1,6 @@
 import { makeAutoObservable, runInAction } from 'mobx';
-import { apiCall } from '../services/ApiRequest';
 import { User } from '../types/UsersTypes';
+import { apiCall } from '../services/ApiRequest';
 
 
 class UsersStore {

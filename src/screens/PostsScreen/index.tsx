@@ -10,6 +10,7 @@ import MainLayout from '../../layouts/MainLayout';
 import CustomFlatList from '../../components/customFlatList';
 import { observer } from 'mobx-react';
 import postsStore from '../../store/Posts';
+import { COLORS } from '../../styles/colors';
 
 const PostsScreen: React.FC = observer(() => {
     const navigation = useNavigation<DrawerNavigationProp<DrawerMenuStackParamList>>();
@@ -45,14 +46,12 @@ const PostsScreen: React.FC = observer(() => {
                     />
                 }
                 renderItem={renderPosts}
-                ListFooterComponent={
-                    <Pagination
-                        currentPage={postsStore.currentPage}
-                        listRef={listRef}
-                        onPageChange={postsStore.setCurrentPage}
-                        totalPages={postsStore.totalPages}
-                    />
-                }
+                ListFooterComponent={postsStore.searchPostValue.length > 0 ? <></> : <Pagination
+                    currentPage={postsStore.currentPage}
+                    listRef={listRef}
+                    onPageChange={postsStore.setCurrentPage}
+                    totalPages={postsStore.totalPages}
+                />}
                 contentContainerStyle={{ gap: 12 }}
             />
         );
@@ -72,6 +71,6 @@ export default PostsScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#ffffff',
+        backgroundColor: COLORS.background.white,
     },
 });

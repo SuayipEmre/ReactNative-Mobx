@@ -6,6 +6,7 @@ import { observer } from 'mobx-react'
 import UserCard from '../../components/userCard'
 import MainLayout from '../../layouts/MainLayout'
 import { TEXT_SIZE } from '../../styles/ConstantValues'
+import { COLORS } from '../../styles/colors'
 
 const FavoritesScreen = observer(() => {
     return (
@@ -32,7 +33,7 @@ export default FavoritesScreen
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#ffffff',
+        backgroundColor: COLORS.background.white,
     },
     title : {
         fontSize:TEXT_SIZE.large,

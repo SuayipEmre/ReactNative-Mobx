@@ -7,6 +7,7 @@ import TodosIcon from '../icons/TodosIcon'
 import CustomDrawerItem from './CustomDrawerItem'
 import HeartIcon from '../icons/HeartIcon'
 import { MARGIN, PADDING, RADIUS, TEXT_SIZE } from '../styles/ConstantValues'
+import { COLORS } from '../styles/colors'
 
 
 type CustomDrawerMenuPropsTypes = {
@@ -81,14 +82,18 @@ export default CustomDrawerMenu
 
 
 export const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'space-between', paddingBottom: PADDING.huge, },
+  container: {
+    flex: 1,
+    justifyContent: 'space-between',
+    paddingBottom: PADDING.huge,
+  },
   top_content: {
     width: 228,
     flexDirection: 'row',
     gap: 12,
     alignItems: 'center',
     borderBottomWidth: 1,
-    borderBottomColor: '#D8D9DD',
+    borderBottomColor: COLORS.border.secondary,
     marginLeft: MARGIN.huge,
     paddingVertical: PADDING.medium,
     marginBottom: MARGIN.medium,
@@ -106,7 +111,7 @@ export const styles = StyleSheet.create({
     fontSize: TEXT_SIZE.small,
     lineHeight: 16,
     letterSpacing: 0.5,
-    color: '#485B69'
+    color: COLORS.text.primary
 
 
   },

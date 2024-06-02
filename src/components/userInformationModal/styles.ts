@@ -1,7 +1,8 @@
 import { Dimensions, StyleSheet } from "react-native";
 import { MARGIN, PADDING, RADIUS, TEXT_SIZE } from "../../styles/ConstantValues";
+import { COLORS } from "../../styles/colors";
 
-const { width, height } = Dimensions.get('screen')
+const { width} = Dimensions.get('screen')
 export default StyleSheet.create({
 
     modalView: {
@@ -9,7 +10,7 @@ export default StyleSheet.create({
         bottom: 0,
         height: 344,
         width: width,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: COLORS.background.white,
         shadowColor: '#000',
         shadowOffset: {
             width: 0,
@@ -32,7 +33,7 @@ export default StyleSheet.create({
         fontWeight: 600,
         fontSize: TEXT_SIZE.xLarge,
         letterSpacing: 0.4,
-        color: '#26303E',
+        color: COLORS.text.primary,
     },
   
 

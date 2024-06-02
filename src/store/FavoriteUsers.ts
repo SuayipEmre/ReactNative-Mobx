@@ -12,7 +12,7 @@ class FavoriteUsersStore {
         makeAutoObservable(this);
     }
 
-    addFavoriteUser = async(user : User) => {
+    addFavoriteUser = async (user: User) => {
         this.loading = true
         this.error = null
         try {
@@ -38,11 +38,11 @@ class FavoriteUsersStore {
         }
     }
 
-    removeFavoriteUser = async(user: User) => {
+    removeFavoriteUser = async (user: User) => {
         this.loading = true;
         this.error = null;
         try {
-            const existingFavorites : User[] = await getFavoriteCharactersFromStorage();
+            const existingFavorites: User[] = await getFavoriteCharactersFromStorage();
 
             if (existingFavorites) {
                 const newFavorites = existingFavorites.filter(item => item.id !== user.id);
@@ -64,20 +64,20 @@ class FavoriteUsersStore {
     }
 
 
-    loadFavoriteUsers = async() => {
+    loadFavoriteUsers = async () => {
         this.loading = true;
         this.error = null;
         try {
             const existingFavorites = await getFavoriteCharactersFromStorage()
 
-            if(existingFavorites){
+            if (existingFavorites) {
                 runInAction(() => {
                     this.favoriteUsers = existingFavorites;
                     this.loading = false
                 });
             }
 
-         
+
         } catch (error) {
             runInAction(() => {
                 this.error = 'Failed to load favorite users'
@@ -88,5 +88,5 @@ class FavoriteUsersStore {
     }
 }
 
-const favoriteUsersStore = new FavoriteUsersStore();
+const favoriteUsersStore = new FavoriteUsersStore()
 export default favoriteUsersStore;

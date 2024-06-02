@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native"
 import { MARGIN, RADIUS, TEXT_SIZE } from "../../styles/ConstantValues"
+import { COLORS } from "../../styles/colors"
 
 export default StyleSheet.create({
   
@@ -8,7 +9,7 @@ export default StyleSheet.create({
         width: 385,
         marginTop:MARGIN.xLarge,
         borderWidth: 1,
-        borderColor: '#0000001F',
+        borderColor: COLORS.border.secondary,
         alignItems: 'center',
         justifyContent: 'space-between',
         height: 32,
@@ -26,6 +27,7 @@ export default StyleSheet.create({
         fontSize: TEXT_SIZE.small,
         fontWeight: '400',
         textAlign: 'center',
+        color : COLORS.text.primary,
     },
 
 })

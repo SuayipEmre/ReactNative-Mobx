@@ -1,12 +1,13 @@
 import { StyleSheet } from "react-native";
 import { PADDING, RADIUS, TEXT_SIZE } from "../../styles/ConstantValues";
+import { COLORS } from "../../styles/colors";
 
 export default StyleSheet.create({
     container: {
         flexDirection: 'row',
         width: '100%',
         borderWidth: 1,
-        borderColor: '#0000001F',
+        borderColor: COLORS.border.secondary,
         padding: PADDING.small,
         gap: 16,
         borderRadius: RADIUS.medium,
@@ -16,12 +17,12 @@ export default StyleSheet.create({
     },
     name: {
         fontWeight: '500',
-        color: '#26303E',
+        color: COLORS.text.primary,
     },
     body: {
         flexWrap: 'wrap',
         fontSize: TEXT_SIZE.normal,
         fontWeight: '400',
-        color: '#5C6672'
+        color: COLORS.text.secondary
     },
 })

@@ -1,10 +1,11 @@
 import { StyleSheet } from "react-native";
 import { PADDING, TEXT_SIZE } from "../../../styles/ConstantValues";
+import { COLORS } from "../../../styles/colors";
 
 export default StyleSheet.create({
     content_item:{
         borderBottomWidth : 1,
-        borderBottomColor : '#0000001F',
+        borderBottomColor : COLORS.border.secondary,
         paddingVertical : PADDING.medium,
         paddingHorizontal : PADDING.small,
         height : 81,
@@ -26,6 +27,6 @@ export default StyleSheet.create({
         fontSize:TEXT_SIZE.normal,
         lineHeight : 20,
         letterSpacing : 0.1,
-        color :'#5C6672',
+        color :COLORS.text.secondary,
     },
 })

@@ -11,14 +11,15 @@ import CustomFlatList from '../../components/customFlatList'
 import TodoCard from '../../components/todoCard'
 import todosStore from '../../store/Todos'
 import { observer } from 'mobx-react'
+import { COLORS } from '../../styles/colors'
 
 const TodosScreen: React.FC = observer(() => {
-    const navigation = useNavigation<DrawerNavigationProp<DrawerMenuStackParamList>>();
-    const listRef = useRef<FlatList>(null);
+    const navigation = useNavigation<DrawerNavigationProp<DrawerMenuStackParamList>>()
+    const listRef = useRef<FlatList>(null)
 
     useEffect(() => {
-        todosStore.fetchTodos();
-    }, []);
+        todosStore.fetchTodos()
+    }, [])
 
     const renderTodos: ListRenderItem<TodosTypes> = ({ item, index }) => <TodoCard index={index} todo={item} />
 
@@ -28,10 +29,9 @@ const TodosScreen: React.FC = observer(() => {
                 <View style={{ width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' }}>
                     <ActivityIndicator />
                 </View>
-            );
-        } else if (todosStore.error) {
-            return <Text>{todosStore.error}</Text>;
-        }
+            )
+        } else if (todosStore.error)  return <Text>{todosStore.error}</Text>;
+        
 
         return (
             <CustomFlatList
@@ -46,17 +46,15 @@ const TodosScreen: React.FC = observer(() => {
                     />
                 }
                 renderItem={renderTodos}
-                ListFooterComponent={
-                    <Pagination
-                        currentPage={todosStore.currentPage}
-                        listRef={listRef}
-                        onPageChange={todosStore.setCurrentPage}
-                        totalPages={todosStore.totalPages}
-                    />
-                }
+                ListFooterComponent={todosStore.searchTodos.length > 0 ? <></> : <Pagination
+                    currentPage={todosStore.currentPage}
+                    listRef={listRef}
+                    onPageChange={todosStore.setCurrentPage}
+                    totalPages={todosStore.totalPages}
+                />}
                 contentContainerStyle={{ gap: 12 }}
             />
-        );
+        )
     }
 
     return (
@@ -65,7 +63,7 @@ const TodosScreen: React.FC = observer(() => {
                 {renderContent()}
             </MainLayout>
         </SafeAreaView>
-    );
+    )
 })
 
 export default TodosScreen
@@ -73,6 +71,6 @@ export default TodosScreen
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#ffffff',
+        backgroundColor: COLORS.background.white,
     },
 });

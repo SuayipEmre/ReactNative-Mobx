@@ -1,7 +1,7 @@
 import { makeAutoObservable, runInAction } from 'mobx';
-import { apiCall } from '../services/ApiRequest';
 import { ITEMS_PER_PAGE } from '../constants/itemsPerPage';
 import { PostsTypes } from '../types/PostsTypes';
+import { apiCall } from '../services/ApiRequest';
 
 
 class PostsStore {

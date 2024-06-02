@@ -1,7 +1,7 @@
 import { makeAutoObservable, runInAction } from 'mobx';
 import { TodosTypes } from '../types/TodosTypes';
-import { apiCall } from '../services/ApiRequest';
 import { ITEMS_PER_PAGE } from '../constants/itemsPerPage';
+import { apiCall } from '../services/ApiRequest';
 
 class TodosStore {
     todos: TodosTypes[] = []

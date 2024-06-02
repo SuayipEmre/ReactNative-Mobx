@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from "react-native"
 import { TouchableOpacity } from "react-native-gesture-handler"
 import ChevronRightIcon from "../icons/ChevronRightIcon"
 import { PADDING } from "../styles/ConstantValues"
+import { COLORS } from "../styles/colors"
 
 
 type CustomDrawerItemProps = {
@@ -48,17 +49,17 @@ export const styles = StyleSheet.create({
         gap:10,
     },
     active_bg: {
-        backgroundColor: '#4F359B1A',
+        backgroundColor:  COLORS.drawerMenu.active_bg,
     },
     inactive_bg: {
-        backgroundColor: '#FFFFFF'
+        backgroundColor:  COLORS.drawerMenu.inactive_bg
     },
 
     active_text: {
-        color: '#4F359B',
+        color:  COLORS.drawerMenu.active_text,
 
     },
     inactive_text: {
-        color: '#4F359B',
+        color: COLORS.drawerMenu.inactive_text,
     },
 })

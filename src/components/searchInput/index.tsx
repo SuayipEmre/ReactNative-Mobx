@@ -18,7 +18,7 @@ const SearchInput : React.FC<SearchInputProps> = ({searchValue, setSearchValue, 
                 value={searchValue}
                 onChangeText={setSearchValue}
                 placeholder={placeholder}
-                placeholderTextColor={COLORS.text.primary}
+                placeholderTextColor={COLORS.text.placeholder}
             />
 
         </View>

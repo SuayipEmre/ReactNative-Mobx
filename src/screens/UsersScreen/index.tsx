@@ -10,13 +10,14 @@ import MainLayout from '../../layouts/MainLayout';
 import CustomFlatList from '../../components/customFlatList';
 import { observer } from 'mobx-react';
 import usersStore from '../../store/Users';
+import { COLORS } from '../../styles/colors';
 
 const UsersScreen: React.FC = observer(() => {
     const navigation = useNavigation<DrawerNavigationProp<DrawerMenuStackParamList>>();
     const listRef = useRef<FlatList>(null);
 
     useEffect(() => {
-        usersStore.fetchUsers();
+        usersStore.fetchUsers()
     }, []);
 
     const renderUsers: ListRenderItem<typeof usersStore.users[0]> = ({ item, index }) => <UserCard user={item} index={index} />
@@ -45,14 +46,12 @@ const UsersScreen: React.FC = observer(() => {
                     />
                 }
                 renderItem={renderUsers}
-                ListFooterComponent={
-                    <Pagination
-                        currentPage={usersStore.currentPage}
-                        listRef={listRef}
-                        onPageChange={usersStore.setCurrentPage}
-                        totalPages={usersStore.totalPages}
-                    />
-                }
+                ListFooterComponent={usersStore.searchUser.length > 0 ? <></> : <Pagination
+                    currentPage={usersStore.currentPage}
+                    listRef={listRef}
+                    onPageChange={usersStore.setCurrentPage}
+                    totalPages={usersStore.totalPages}
+                />}
                 contentContainerStyle={{ gap: 12 }}
             />
         );
@@ -72,6 +71,6 @@ export default UsersScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#ffffff',
+        backgroundColor: COLORS.background.white,
     },
 });

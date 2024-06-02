@@ -12,6 +12,7 @@ export const COLORS = {
     background:{
         primary :'#F1F5F9',
         secondary :'#F5F5F5',
+        white : '#FFFFFF'
     },
     foreground:{
         primary : '#111827',
@@ -26,5 +27,11 @@ export const COLORS = {
         secondary : '#E5E7EB',
         active : '#374151',
         disabled : '#E5E7EB',
+    },
+    drawerMenu : {
+        active_bg : '#4F359B1A',
+        inactive_bg : '#FFFFFF',
+        active_text:'#4F359B',
+        inactive_text:'#4F359B',
     },
 }
