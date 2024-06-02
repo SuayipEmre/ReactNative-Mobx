@@ -1,4 +1,4 @@
-import { ActivityIndicator, FlatList, ListRenderItem, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { FlatList, ListRenderItem, SafeAreaView, StyleSheet, Text } from 'react-native';
 import React, { useEffect, useRef } from 'react';
 import CustomScreenHeader from '../../components/customScreenHeader';
 import { useNavigation } from '@react-navigation/native';
@@ -12,6 +12,7 @@ import { observer } from 'mobx-react';
 import usersStore from '../../store/Users';
 import { COLORS } from '../../styles/colors';
 import { GAP } from '../../styles/ConstantValues';
+import Loading from '../../components/loading';
 
 const UsersScreen: React.FC = observer(() => {
     const navigation = useNavigation<DrawerNavigationProp<DrawerMenuStackParamList>>();
@@ -24,15 +25,10 @@ const UsersScreen: React.FC = observer(() => {
     const renderUsers: ListRenderItem<typeof usersStore.users[0]> = ({ item, index }) => <UserCard user={item} index={index} />
 
     const renderContent = () => {
-        if (usersStore.loading) {
-            return (
-                <View style={{ width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' }}>
-                    <ActivityIndicator />
-                </View>
-            );
-        } else if (usersStore.error) {
-            return <Text>{usersStore.error}</Text>;
-        }
+        if (usersStore.loading) return <Loading />
+
+        else if (usersStore.error) return <Text>{usersStore.error}</Text>
+
 
         return (
             <CustomFlatList

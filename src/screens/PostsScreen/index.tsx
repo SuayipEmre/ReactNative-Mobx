@@ -1,4 +1,4 @@
-import { ActivityIndicator, FlatList, ListRenderItem, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { FlatList, ListRenderItem, SafeAreaView, StyleSheet, Text } from 'react-native';
 import React, { useEffect, useRef } from 'react';
 import CustomScreenHeader from '../../components/customScreenHeader';
 import { useNavigation } from '@react-navigation/native';
@@ -12,6 +12,7 @@ import { observer } from 'mobx-react';
 import postsStore from '../../store/Posts';
 import { COLORS } from '../../styles/colors';
 import { GAP } from '../../styles/ConstantValues';
+import Loading from '../../components/loading';
 
 const PostsScreen: React.FC = observer(() => {
     const navigation = useNavigation<DrawerNavigationProp<DrawerMenuStackParamList>>();
@@ -24,15 +25,8 @@ const PostsScreen: React.FC = observer(() => {
     const renderPosts: ListRenderItem<typeof postsStore.posts[0]> = ({ item, index }) => <PostCard post={item} index={index} />
 
     const renderContent = () => {
-        if (postsStore.loading) {
-            return (
-                <View style={{ width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' }}>
-                    <ActivityIndicator />
-                </View>
-            );
-        } else if (postsStore.error) {
-            return <Text>{postsStore.error}</Text>;
-        }
+        if (postsStore.loading) return <Loading />
+        else if (postsStore.error) return <Text>{postsStore.error}</Text>;
 
         return (
             <CustomFlatList

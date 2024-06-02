@@ -1,4 +1,4 @@
-import { ActivityIndicator, FlatList, ListRenderItem, SafeAreaView, StyleSheet, Text, View } from 'react-native'
+import { FlatList, ListRenderItem, SafeAreaView, StyleSheet, Text } from 'react-native'
 import React, { useEffect, useRef } from 'react'
 import Pagination from '../../components/pagination'
 import { TodosTypes } from '../../types/TodosTypes'
@@ -13,6 +13,7 @@ import todosStore from '../../store/Todos'
 import { observer } from 'mobx-react'
 import { COLORS } from '../../styles/colors'
 import { GAP } from '../../styles/ConstantValues'
+import Loading from '../../components/loading'
 
 const TodosScreen: React.FC = observer(() => {
     const navigation = useNavigation<DrawerNavigationProp<DrawerMenuStackParamList>>()
@@ -25,14 +26,9 @@ const TodosScreen: React.FC = observer(() => {
     const renderTodos: ListRenderItem<TodosTypes> = ({ item, index }) => <TodoCard index={index} todo={item} />
 
     const renderContent = () => {
-        if (todosStore.loading) {
-            return (
-                <View style={{ width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' }}>
-                    <ActivityIndicator />
-                </View>
-            )
-        } else if (todosStore.error)  return <Text>{todosStore.error}</Text>;
-        
+        if (todosStore.loading) return <Loading />
+        else if (todosStore.error) return <Text>{todosStore.error}</Text>;
+
 
         return (
             <CustomFlatList
